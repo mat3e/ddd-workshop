@@ -1,7 +1,7 @@
 ## Ćwiczenie 1
 
-1. <!-- .element: class="fragment" --> Rozważyć swój istniejący system (kartka, długopis)
-1. <!-- .element: class="fragment" --> Zidentyfikować, co jest domeną główną
-1. <!-- .element: class="fragment" --> Zidentyfikować subdomeny pomocnicze i&nbsp;generyczne
-1. <!-- .element: class="fragment" --> Zaprezentować rezultat
-1. <!-- .element: class="fragment" --> [opcjonalnie] skonsultować z jakimś ekspertem domenowym
+1. Rozważyć swój istniejący system (kartka, długopis)
+1. Zidentyfikować, co jest domeną główną
+1. Zidentyfikować subdomeny pomocnicze i&nbsp;generyczne
+1. Zaprezentować rezultat
+1. [opcjonalnie] skonsultować z jakimś ekspertem domenowym
