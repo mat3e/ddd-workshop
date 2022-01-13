@@ -1,0 +1,2479 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="description" content="Presentation">
+    <meta name="keywords" content="presentation">
+    <meta name="author" content="mat3e">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/blood.css">
+    <link rel="stylesheet" href="css/idea.css">
+    <link rel="stylesheet" href="css/fontawesome.css">
+    <link rel="stylesheet" href="css/treeview.css">
+    <style>
+        #header-margin {
+            text-align: left;
+            border-left: solid .1em white;
+            line-height: .85;
+            padding-left: .25em;
+        }
+
+        #header-logo {
+            width: 225px;
+            height: 78px;
+            background-image: url('img/isa.png');
+            background-size: contain;
+            top: -4em;
+            right: 0;
+            position: absolute;
+        }
+
+        #about-me {
+            padding: 1em;
+            background-color: rgba(255, 255, 255, .75);
+            list-style-type: none;
+            margin-left: 0;
+            float: left;
+        }
+
+        #about-me ul {
+            list-style-type: none;
+            float: left;
+            margin-left: 0;
+            padding-left: 0;
+        }
+
+        #about-me a {
+            color: #a23;
+        }
+
+        #about-me a:hover {
+            color: #dd5566;
+        }
+
+        .slides section img.pure-img {
+            border: none;
+            box-shadow: none;
+            background: none;
+            margin: 0;
+        }
+
+        code[contenteditable="true"] {
+            border: 0;
+            outline: 0;
+        }
+
+        .slides section pre {
+            margin-bottom: 0;
+        }
+
+        .slides section pre+button {
+            cursor: pointer;
+
+            font-size: .65em;
+            font-weight: 100;
+            -webkit-font-smoothing: antialiased;
+
+            color: white;
+            background: rgb(175, 30, 35);
+
+            padding: 0 3px 3px 3px;
+            border: transparent;
+            border-radius: 4px;
+
+            display: block;
+            margin: 0 auto;
+        }
+
+        .slides section pre+button:disabled {
+            background-color: grey;
+        }
+
+        .slides section a .stripped-img {
+            border: none;
+            margin: 0;
+            box-shadow: none;
+            background-color: rgba(255, 255, 255, 0);
+        }
+
+        .slides section a .stripped-img:hover {
+            border: none;
+            margin: 0;
+            box-shadow: none;
+            background-color: rgba(255, 255, 255, 0);
+        }
+
+        .slides section .comment {
+            margin-top: -20px;
+            margin-bottom: 20px;
+            color: gray;
+        }
+
+        .reveal .slides section .fragment.replace {
+            transition: none;
+            display: inline-block;
+        }
+
+        .reveal .slides section .fragment.replace.flex {
+            transition: none;
+            display: flex;
+        }
+
+        .reveal .slides section .fragment.fade-out.visible.replace {
+            display: none;
+        }
+
+        .reveal .slides section .fragment.fade-in.replace {
+            display: none;
+        }
+
+        .reveal .slides section .fragment.fade-in.visible.replace {
+            display: inline-block;
+        }
+
+        .reveal .slides section .fragment.fade-in.visible.replace.flex {
+            display: flex;
+        }
+
+        .reveal .slides section .fragment.highlight-red.visible {
+            color: #dd5566;
+        }
+
+        #hook-here button {
+            padding: 1em;
+            border-radius: 0;
+            background-color: white;
+            border: 1px solid black;
+        }
+
+        .reveal .slides section td.long-text-cell {
+            font-size: .5em;
+            vertical-align: middle;
+        }
+
+        .reveal .slides section table.summary {
+            table-layout: fixed;
+            width: 100%;
+        }
+
+        .reveal .slides section table.summary th {
+            text-align: center;
+        }
+
+        .reveal .slides section table.summary tbody td,
+        .reveal .slides section table.summary th {
+            width: 33%;
+        }
+
+        .reveal .slides section table.summary tbody td:first-child,
+        .reveal .slides section table.summary th:first-child {
+            width: 7%;
+            vertical-align: middle;
+            text-align: center
+        }
+
+        .reveal .slides section .fragment.no-highlight.visible {
+            color: #eee;
+        }
+
+        .reveal .slides section .fragment.no-highlight {
+            opacity: 1;
+            visibility: inherit;
+        }
+
+        .reveal .slides section .centered {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .Ta\(c\) {
+            text-align: center !important;
+        }
+
+        .Fz\(\.75em\) {
+            font-size: .75em;
+        }
+    </style>
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section data-background-image>
+                <section data-background-image="img/elon.webp" data-background-size="cover">
+                    <div id="header-margin">
+                        <h1 style="margin: 0; font-size: 1.75em">Domain-Driven Design</h1>
+                        <h2 style="font-size: 1.1em">EventSotrming, Czysta Architektura</h2>
+                    </div>
+                    <div id="header-logo"></div>
+                </section>
+                <section data-background-image="img/bg-hd.jpg" data-background-transition="zoom">
+                    <ul id="about-me">
+                        <li>
+                            <ul>
+                                <li>
+                                    <a href="https://www.linkedin.com/in/mateusz-chrzonstowski/">
+                                        <i class="fab fa-linkedin"
+                                            style="color: #0077B5; background-color: #FFF; line-height: .75em"></i>
+                                        /mateusz-chrzonstowski
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://twitter.com/_mat3e_">
+                                        <i class="fab fa-twitter-square"
+                                            style="background-color: #1DA1F2; color: #FFF; line-height: .75em"></i>
+                                        /_mat3e_
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.reddit.com/user/_mat3e_">
+                                        <i class="fab fa-reddit-square"
+                                            style="background-color: #FF4500; color: #FFF; line-height: .75em"></i>
+                                        /_mat3e_
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/mat3e/">
+                                        <i class="fab fa-github-square"
+                                            style="color: #24292E; background-color: #FFF; line-height: .75em"></i>
+                                        /mat3e
+                                    </a>
+                                </li>
+                                <li style="line-height: 1">&nbsp;</li>
+                                <li class="fragment" style="line-height: .75">
+                                    <a style="font-size: .75em; font-weight: bold;"
+                                        href="https://mat3e.github.io/talks/ddd-workshop/alior.html">
+                                        mat3e.github.io/talks
+                                        <div style="padding-left: 5em;">
+                                            /ddd-workshop/alior</div>
+                                    </a>
+                                </li>
+                                <li style="line-height: 1">&nbsp;</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul class="fragment" style="padding: .1em; line-height: 1">
+                                <li>
+                                    <a href="https://full-stack.engineering/">
+                                        <img src="img/udemy.svg" class="pure-img" style="height: 1.5em;">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.starburstdata.com/careers/" class="fragment">
+                                        <img src="img/starburst.png" class="pure-img" style="height: 1.5em;">
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+            </section>
+            <section data-background-image="" data-transition="zoom">
+                <section>
+                    <h2>DDD - dlaczego?</h2>
+                    <ul>
+                        <li class="fragment">(Lepsze) zrozumienie biznesu</li>
+                        <li class="fragment">
+                            Oprogramowanie sensowne dla ludzi biznesu, nie tylko samych koderów
+                            <ul>
+                                <li class="fragment">Co zarabia? <span class="fragment">Biznes</span></li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Zaangażowanie ekspertów domenowych</li>
+                        <li class="fragment">
+                            Wspólne kształtowanie bizesu - czerpanie wiedzy z używanego oprogramowania
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Ekspert domenowy - kto?</h3>
+                    <ul>
+                        <li class="fragment">Niekoniecznie PM czy analityk biznesowy</li>
+                        <li class="fragment">
+                            Często użytkownik końcowy, nieznający technicznego żargonu
+                        </li>
+                        <li class="fragment">
+                            Księgowy, dział sprzedaży, pracownicy call center pomagający użytkownikom
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <blockquote style="width: 100%;">
+                        <b>Cel</b>: stworzyć oprogramowanie, które odzwierciedla model mentalny ekspertów dziedzinowych.
+                        <div class="fragment">
+                            Dostarczyć najbardziej przydatny dla biznesu model, najbardziej użyteczny.
+                        </div>
+                        <div class="fragment">
+                            Niekoniecznie chodzi o&nbsp;zamodelowanie rzeczywistego świata
+                        </div>
+                    </blockquote>
+                    <blockquote class="fragment" style="width: 100%;">
+                        <b>Droga do celu</b>: poznanie i wspólne (dev + biz) rozwijanie "języka wszechobecnego"
+                        (Ubiquitous Language).
+                        <div class="fragment">
+                            W kodzie w historyjkach, w komunikacji
+                        </div>
+                    </blockquote>
+                </section>
+                <section>
+                    <h3>Domena?</h3>
+                    <ul style="font-size: .85em;">
+                        <li class="fragment">Dziedzina</li>
+                        <li class="fragment">
+                            Rozwijanie oprogramowania przedsiębiorstwa (organizacji)
+                            <span class="fragment">= praca w ich <b>dziedzinie</b></span>
+                        </li>
+                        <li class="fragment">To, co organizacja robi</li>
+                        <li class="fragment">Ogółem: identyfikacja rynku + sprzedaż produktów/usług</li>
+                        <li class="fragment">
+                            W szczegółach: unikalny obszar wiedzy specjalistycznej i&nbsp;sposób realizacji zadań
+                        </li>
+                        <li class="fragment">
+                            Najlepszy produkt, najtańszy produkt, unikalny proces sprzedaży, możliwość zrobienia
+                            czegoś online, podejście do klienta, unikalny sposób komunikacji z klientem
+                        </li>
+                    </ul>
+                    <aside class="notes">Jest wyróżnik, inaczej firma zniknęłaby z rynku</aside>
+                </section>
+                <section>
+                    <h3>Domena - cd.</h3>
+                    <img src="img/strategic/supporting.png" class="pure-img fragment" data-fragment-index="2"
+                        alt="supporting subdomain" height="180" />
+                    <img src="img/strategic/generic.png" class="pure-img fragment" data-fragment-index="3"
+                        alt="generic subdomain" />
+                    <div style="display: flex; justify-content: center;">
+                        <img src="img/strategic/supporting.png" class="pure-img fragment" data-fragment-index="2"
+                            alt="supporting subdomain" height="180" />
+                        <div style="background-image: url('img/strategic/core.png'); background-size: contain; height: 180px; width: 225px; display: inline-block; margin: 0 10px;"
+                            class="fragment" data-fragment-index="1">
+                            <br />
+                            <h4 style="color: red; margin-bottom: 0; transform: rotateZ(-10deg); display: inline-block;"
+                                class="fragment">
+                                $$$
+                            </h4>
+                        </div>
+                        <img src="img/strategic/supporting.png" class="pure-img fragment" data-fragment-index="2"
+                            alt="supporting subdomain" height="180" />
+                    </div>
+                    <img src="img/strategic/generic.png" class="pure-img fragment" data-fragment-index="3"
+                        alt="generic subdomain" />
+                    <img src="img/strategic/generic.png" class="pure-img fragment" data-fragment-index="3"
+                        alt="generic subdomain" />
+                    <aside class="notes">
+                        W ramach tak ogólnie zdefiniowanej dziedziny - Dziedzina Główna (core domain), supporting
+                        subdomain, generic subdomain
+                        <br />
+                        poddomena, poddziedzina, subdomena, subdziedzina
+                    </aside>
+                </section>
+                <section>
+                    <h3 style="margin-bottom: 0;">Domena!</h3>
+                    <ul style="font-size: .85em; line-height: 1.15;">
+                        <li class="fragment">Przestrzeń problemu</li>
+                        <li class="fragment">Obszary naszego biznesu</li>
+                        <li class="fragment">Core - dziedzina główna
+                            <ul>
+                                <li class="fragment">Tam pieniądz</li>
+                                <li class="fragment">Dążenie do doskonałości</li>
+                                <li class="fragment">Najwięcej zmian</li>
+                                <li class="fragment">Nasz unikalny, często usprawniany proces</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Supporting - subdomena pomocnicza
+                            <ul>
+                                <li class="fragment">W pewnym sensie wyspecjalizowana</li>
+                                <li class="fragment">Pomaga realizować <i>Core</i></li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Generyczne
+                            <ul>
+                                <li class="fragment">Potrzebne</li>
+                                <li class="fragment">Outsourcing/gotowe produkty</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h4>Przykład - opowiadanie bajek</h4>
+                    <div style="width: 75%; margin: 0 auto" class="fragment replace fade-out" data-fragment-index="6">
+                        <div style="background: no-repeat center url('img/strategic/core.png'); height: 200px">
+                            <br>
+                            <h4 style="color: red; margin-bottom: 0; transform: rotateZ(-10deg);" class="fragment"
+                                data-fragment-index="1">Bajki</h4>
+                        </div>
+                        <div style="background: no-repeat center url('img/strategic/supporting.png'); height: 200px">
+                            <br>
+                            <h4 style="color: red; margin-bottom: 0; transform: rotateZ(-10deg);" class="fragment"
+                                data-fragment-index="4">Dyskusje</h4>
+                            <img class="pure-img fragment" data-fragment-index="5" src="img/whatif.png"
+                                style="height: 2em;" />
+                        </div>
+                        <div style="background: no-repeat center url('img/strategic/generic.png'); height: 180px">
+                            <h4 style="color: red; margin-bottom: .5em; transform: rotateZ(-10deg);" class="fragment"
+                                data-fragment-index="2">Identity & Access<br>Management</h4>
+                            <img class="pure-img fragment" data-fragment-index="3" src="img/auth0.png"
+                                style="height: 1em;" />
+                        </div>
+                    </div>
+                    <div style="width: 75%; margin: 0 auto" class="fragment replace fade-in" data-fragment-index="6">
+                        <div style="background: no-repeat center url('img/strategic/core.png'); height: 200px">
+                            <br>
+                            <h4 style="color: red; margin-bottom: 0; transform: rotateZ(-10deg);">Dyskusje</h4>
+                            <img class="pure-img" src="img/whatif.png" style="height: 2em;" />
+                        </div>
+                        <div style="background: no-repeat center url('img/strategic/supporting.png'); height: 200px">
+                            <br>
+                            <h4 style="color: red; margin-bottom: 0; transform: rotateZ(-10deg);">Bajki</h4>
+                        </div>
+                        <div style="background: no-repeat center url('img/strategic/generic.png'); height: 180px">
+                            <h4 style="color: red; margin-bottom: .5em; transform: rotateZ(-10deg);">
+                                Identity & Access<br>Management
+                            </h4>
+                            <img class="pure-img" src="img/auth0.png" style="height: 1em;" />
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h2>DDD - gdzie i kiedy?</h2>
+                    <ul>
+                        <li class="fragment">Nie wszędzie!</li>
+                        <li class="fragment">Najważniejsze obszary</li>
+                        <li class="fragment">Najbardziej wartościowe, dające szanse na osiągnięcie/zwiększenie zysków
+                        </li>
+                        <li class="fragment">Domena główna (Core) i niektóre pomocnicze</li>
+                        <li class="fragment">Tam, gdzie potencjał do rozwoju i zmian</li>
+                        <li class="fragment">Gdy chętni do współpracy eksperci</li>
+                        <li class="fragment">Gdy skorzystanie ułatwi integrację z innymi domenami</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>DDD</h2>
+                    <blockquote>
+                        Modelowanie złożonych dziedzin w najprostszy możliwy sposób.
+                        <div class="fragment">NIGDY nie komplikować istniejącego rozwiązania</div>
+                    </blockquote>
+                </section>
+            </section>
+            <section data-background-image="" data-transition="zoom">
+                <section>
+                    <h1>DDD</h1>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td class="fragment" data-fragment-index="1">
+                                    <h3 class="fragment highlight-red">Strategiczne</h3>
+                                </td>
+                                <td class="fragment" data-fragment-index="1">
+                                    <h3>Taktyczne</h3>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3>DDD a programiści</h3>
+                    <ul>
+                        <li class="fragment">DDD strategiczne = znajdowanie domen</li>
+                        <li class="fragment">Domena = przestrzeń problemu</li>
+                        <li class="fragment">Czasem mało ekscytujący biznes/problem</li>
+                        <li class="fragment">Za mało szukania wzorców w problemie</li>
+                        <li class="fragment">Za dużo w rozwiązaniach i to specyficznych
+                            <ul>
+                                <li class="fragment">Taki a taki framework</li>
+                                <li class="fragment">Taki a taki wzorzec projektowy</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <aside class="notes">
+                        DDD to jednak domain-driven, domena to przestrzeń problemu, czyli wyjdźmy od problemu
+                    </aside>
+                </section>
+                <section>
+                    <h3 style="margin-bottom: 0;">Subdomeny - po co?</h3>
+                    <ul>
+                        <li class="fragment">Zrozumienie działania biznesu</li>
+                        <li class="fragment">Podzielenie problemu na mniejsze</li>
+                        <li class="fragment">Lepsze gospodarowanie zasobami - różne techniki w różnych subdomenach</li>
+                    </ul>
+                    <hr />
+                    <h3 style="margin-bottom: 0;">Kiedy szukać?</h3>
+                    <ul>
+                        <li class="fragment">Jest kilkanaście funkcji biznesowych do zamodelowania</li>
+                        <li class="fragment">Brak pełnego zrozumienia</li>
+                        <li class="fragment">Potencjał do rozwoju, pomysły "na potem"</li>
+                    </ul>
+                    <aside class="notes">
+                        kilkanaście to wartość graniczna, bo często umniejszamy złożoność; "to proste"
+                    </aside>
+                </section>
+                <section>
+                    <h3>Szukanie domen - 1/2</h3>
+                    <ul style="font-size: .9em; line-height: 1.15;">
+                        <li class="fragment">Analiza struktury przedsiębiorstwa (prawo Conwaya)</li>
+                        <li class="fragment">Różni eksperci w tym samym dziale
+                            <ul>
+                                <li class="fragment">
+                                    Dział kredytów, ale różne osoby od kredytów indywidualnych i firmowych
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="fragment">
+                            Język ekspertów - szukać czasowników (zachowań) idących w parze ze słowem
+                            <ul>
+                                <li class="fragment">Różne zachowania dla tego samego słowa</li>
+                                <li class="fragment">Ta sama rzecz, inaczej nazwana</li>
+                                <li class="fragment">Np. klient w dziale kredytowym i adresat w dziale powiadomień</li>
+                                <li class="fragment">Sprawdzenia: czy ktoś inny niż klient może być adresatem?</li>
+                                <li class="fragment">Nagle np. nowa subdomena "upoważnienia"</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Szukanie domen - 2/2</h3>
+                    <ul>
+                        <li class="fragment">Szukanie wartości biznesowej
+                            <ul>
+                                <li class="fragment">Np. zarabiamy na klientach firmowych</li>
+                                <li class="fragment">Indywidualni by nas nie interesowali, ale niektórzy polecają w
+                                    swoich firmach</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Analiza kroków procesu biznesowego
+                            <ul>
+                                <li class="fragment">
+                                    Np. oferta złożona i oferta końcowa są rozdzielone etapem akceptacji przez klienta
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Prawo Conwaya</h3>
+                    <blockquote>
+                        Any organization that designs a system (defined broadly) will produce a design whose structure
+                        is a copy of the organization's communication structure
+                    </blockquote>
+                </section>
+                <section>
+                    <blockquote>
+                        Subdomeny nie są stałe
+                        <div class="fragment">
+                            Pilnować i śledzić zmiany
+                        </div>
+                    </blockquote>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Ćwiczenie 1
+
+                        1. <!-- .element: class="fragment" --> Rozważyć swój istniejący system (kartka, długopis)
+                        1. <!-- .element: class="fragment" --> Zidentyfikować, co jest domeną główną
+                        1. <!-- .element: class="fragment" --> Zidentyfikować subdomeny pomocnicze i&nbsp;generyczne
+                        1. <!-- .element: class="fragment" --> Zaprezentować rezultat
+                        1. <!-- .element: class="fragment" --> [opcjonalnie] skonsultować z jakimś ekspertem domenowym
+                    </script>
+                </section>
+            </section>
+            <section data-background-image="" data-transition="zoom">
+                <section>
+                    <h3 style="margin-bottom: 0;">EventStorming</h3>
+                    <ul style="font-size: .85em;">
+                        <li class="fragment">
+                            Narzędzie do prowadzenia rozmowy, dzięki któremu system, architektura i procesy stają się
+                            bardziej oczywiste
+                            <ul>
+                                <li class="fragment">Narzędzie do odkrywania, a nie dokumentowania</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Szybkie znajdowanie braków w wiedzy biznesowej</li>
+                        <li class="fragment">Forma warsztatowa, stopniowe zyskiwanie wiedzy</li>
+                        <li class="fragment">Synchronizacja wiedzy między ekspertami domenowymi</li>
+                        <li class="fragment">Rodzaje
+                            <ul>
+                                <li class="fragment">Big Picture ES - znajdowanie domen</li>
+                                <li class="fragment">
+                                    Process Modelling, Process-Level ES - odkrywanie rozwiązań, nowe procesy i usługi
+                                </li>
+                                <li class="fragment">Software Design, Design-Level ES - zbliżanie się do kodu (ile
+                                    wlezie), taktyczne DDD</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">
+                            <a href="https://github.com/mariuszgil/awesome-eventstorming">
+                                github.com/mariuszgil/awesome-eventstorming
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h3 style="margin-bottom: 0;">Big Picture</h3>
+                    <ul style="line-height: 1.2;">
+                        <li class="fragment">Znajdowanie domen</li>
+                        <li class="fragment">Poznanie procesu biznesowego jakim on jest</li>
+                        <li class="fragment">
+                            Retrospekcje, reboot organizacji, transformacja, duże zmiany architektoniczne, startupy,
+                            kick-offy
+                        </li>
+                        <li class="fragment">Koncentracja na zdarzeniach biznesowych
+                            <ul style="font-size: .9em;">
+                                <li class="fragment">CO się stało, nie JAK</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Oś czasu - łatwo znaleźć luki</li>
+                        <li class="fragment">
+                            Uczestnicy sesji
+                            <ul style="font-size: .9em;">
+                                <li class="fragment">Interesariusze wewnętrzni (np. jakiś reprezentant użytkowników)
+                                </li>
+                                <li class="fragment">Zaangażowani w projekt</li>
+                                <li class="fragment">Zainteresowani rozwojem projektu</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <img src="img/bpes.png" class="pure-img">
+                </section>
+                <section>
+                    <h3>Etapy</h3>
+                    <ol>
+                        <li class="fragment">Przygotowanie sali</li>
+                        <li class="fragment">Chaotyczna eksploracja</li>
+                        <li class="fragment">Wprowadzenie osi czasu</li>
+                        <li class="fragment">Opowieść od końca</li>
+                        <li class="fragment">Ludzie i systemy</li>
+                        <li class="fragment">Problemy i okazje</li>
+                    </ol>
+                </section>
+                <section data-background-image="img/timelapse.gif" data-background-size="contain"></section>
+                <section>
+                    <h3>
+                        Przygotowanie
+                    </h3>
+                    <ul>
+                        <li class="fragment">Duża przestrzeń do ruszania się</li>
+                        <li class="fragment">Minimalna ilość krzeseł</li>
+                        <li class="fragment">Duża ściana z podkładem (papier ploterowy)</li>
+                        <li class="fragment">Karteczki i flamastry - dla każdego uczestnika</li>
+                        <li class="fragment">Kosz na zgniecione karteczki
+                            <ul style="font-size: .9em;">
+                                <li class="fragment">Błędne rozumienie, błędne decyzje biznesowe</li>
+                                <li class="fragment">Potencjalne oszczędności, że tego nie zaimplementowaliśmy</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h3 style="margin-bottom: 0;">
+                        Chaotyczna eksploracja
+                    </h3>
+                    <ul>
+                        <li class="fragment">Zdarzenia, czas przeszły dokonany
+                            <ul style="font-size: .9em; line-height: 1.15;">
+                                <li class="fragment">Co istotnego w biznesie z Twojej perspektywy</li>
+                                <li class="fragment">
+                                    Czas przeszły = myślenie o skutkach, o&nbsp;faktycznych zmianach stanu systemu
+                                </li>
+                                <li class="fragment">
+                                    "Wystawiono fakturę". Istotna zmiana stanu w systemie, ma jasny punkt w czasie
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Każdy osobno nakleja</li>
+                        <li class="fragment">Jak 15+ osób, to np. 3-osobowe grupki</li>
+                        <li class="fragment">Chcemy poznać opinie wszystkich</li>
+                        <li class="fragment">
+                            Kończymy, gdy spowalnia tempo powstawania zdarzeń, np. pierwsza osoba przestaje pisać
+                        </li>
+                        <li class="fragment">Można ograniczyć jakimś minutnikiem</li>
+                    </ul>
+                    <aside class="notes">
+                        "Co robiłeś wieczorem?", "piwo, wódka, wino" vs. "ale się naje... napiłem"
+                        <br>
+                        Komendy zależne od adaptera: "ze mną się nie napijesz?", "nie dasz rady tego wypić"
+                    </aside>
+                </section>
+                <section>
+                    <h3 style="margin-bottom: 0;">
+                        Wprowadzenie osi czasu
+                    </h3>
+                    <ul>
+                        <li class="fragment">Porządek chronologiczny</li>
+                        <li class="fragment">Rozwidlenia dróg</li>
+                        <li class="fragment">Grupowanie podobnych zdarzeń (start dyskusji)</li>
+                        <li class="fragment">Nowa kartka - hotspot
+                            <ul style="font-size: .9em;">
+                                <li class="fragment">Punkt dyskusji</li>
+                                <li class="fragment">"OK, tu jest jakiś problem, rozwiążemy go później"</li>
+                                <li class="fragment">Gdy czegoś nie wiemy - też</li>
+                                <li class="fragment">Hotspotów można używać już cały czas</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">
+                            Za dużo hotspotów? Nie jesteśmy gotowi na ten projekt
+                        </li>
+                        <li class="fragment">Kreski/ramki dla równoległych procesów</li>
+                    </ul>
+                    <aside class="notes">
+                        Czasem nie ma co się zagłębiać w subdomenę - jeśli ma być zmieniona, to zostawiamy temat na
+                        kolejne sesje ES
+                    </aside>
+                </section>
+                <section>
+                    <h3>
+                        Opowieść od końca
+                    </h3>
+                    <ul>
+                        <li class="fragment">Prowadząca/ktoś z grupy odczytuje "od tyłu"</li>
+                        <li class="fragment">Koncentracja - czy czegoś brakuje?</li>
+                        <li class="fragment">Nowe zdarzenia, poprawki w procesie, rozgałęzienia</li>
+                        <li class="fragment">Pytania pomocnicze
+                            <ul>
+                                <li class="fragment">"Co jeszcze musiało się stać, żeby X?"</li>
+                                <li class="fragment">"Czy między X a Y dzieje się coś jeszcze?"</li>
+                                <li class="fragment">"Co jeśli X by się nie powiodło?"</li>
+                                <li class="fragment">"Czy X zawsze w tej sytuacji?"</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>
+                        Ludzie i systemy
+                    </h3>
+                    <ul>
+                        <li class="fragment">Małe żółte i większe, "czerwonawe" karteczki</li>
+                        <li class="fragment">Niekoniecznie role w systemie</li>
+                        <li class="fragment">Mała firma/dział? Można nawet nazwiskami :)</li>
+                        <li class="fragment">Systemem może być wew. dział, urząd, społeczeństwo</li>
+                        <li class="fragment">Nie każde zdarzenie ma swojego aktora</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>
+                        Problemy i okazje
+                    </h3>
+                    <ul>
+                        <li class="fragment">Zielone i hotspotowe karteczki</li>
+                        <li class="fragment">Dodajemy potencjalne korzyści, punkty rozwoju</li>
+                        <li class="fragment">Priorytetyzować - strzałeczki przy ważnych problemach/okazjach</li>
+                        <li class="fragment">Zidentyfikowanie subdomen</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>
+                        Prowadzący
+                    </h3>
+                    <ul>
+                        <li class="fragment">AKA facilitator/moderator</li>
+                        <li class="fragment">Nie wpływa na model, nie ingeruje</li>
+                        <li class="fragment">"Zadaj takie pytanie"</li>
+                        <li class="fragment">"Zwróć na to uwagę"</li>
+                        <li class="fragment">"On powiedział to"</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3 style="margin-bottom: 0;">
+                        Online
+                    </h3>
+                    <ul>
+                        <li class="fragment">3 godziny na sesję = max</li>
+                        <li class="fragment">
+                            Więcej centralizacji, synchronizacji
+                            <ul style="font-size: .9em;">
+                                <li class="fragment">Czytanie na głos, po kolei</li>
+                                <li class="fragment">Ktoś sortuje, pozostali komentują</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Więcej hotspotów
+                            <ul style="font-size: .9em;">
+                                <li class="fragment">Dyskusje blokują pozostałych</li>
+                                <li class="fragment">Szybki "hotspot" i idziemy dalej</li>
+                                <li class="fragment">Po wszystkim - skupienie na hotspotach, interesujących najwięcej
+                                    uczestników
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="fragment">"Online collaborative modeling session on top of EventStorming notation"
+                        </li>
+                    </ul>
+                    <aside class="notes">Miro pozwala na rozpoznanie karteczek i pisma z foty</aside>
+                </section>
+                <section>
+                    <h3 style="margin-bottom: 0;">Zaadoptowanie ES</h3>
+                    <ul style="font-size: .85em; line-height: 1.15;">
+                        <li class="fragment">Praktyka - najpierw wewnętrznie, w zespole
+                            <ul>
+                                <li class="fragment">Np. CI, zadanie "od planningu do commita"</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Przećwiczyć w różnych rolach i z różnymi problemami</li>
+                        <li class="fragment">
+                            Rozszerzenia - alert, model Machine Learning, zdarzenie opcjonalne, cykliczne
+                        </li>
+                        <li class="fragment">ES to nie cel sam w sobie
+                            <ul>
+                                <li class="fragment">Co do zasady - z procesu i rozumienia ma coś wyniknąć</li>
+                                <li class="fragment">Na jakie pytanie odpowiada ten sytem? Jaką potrzebę?</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Transfer wiedzy, chęć ujawnienia niewiedzy</li>
+                        <li class="fragment">Zmapowanie procesów</li>
+                        <li class="fragment">Wydzielenie, zaproponowanie rozwiązań</li>
+                    </ul>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Ćwiczenie 2 <!-- .element: style="margin: 0" -->
+
+                        1. <!-- .element: class="fragment" --> Wejść na [miro.com](https://miro.com/)
+                        1. <!-- .element: class="fragment" --> Skorzystać z zespołu "DDD workshop", tablica "Big Picture ES"
+                        1. <!-- .element: class="fragment" --> Modelujemy dostarczanie kodu: od commita, przez CI, code review, aż po wejście na produkcję
+                           1. <!-- .element: class="fragment" --> Chaotyczna eksploracja
+                           1. <!-- .element: class="fragment" --> Wprowadzenie osi czasu
+                           1. <!-- .element: class="fragment" --> Opowieść od końca
+                           1. <!-- .element: class="fragment" --> Ludzie i systemy
+                           1. <!-- .element: class="fragment" --> Problemy i okazje
+                    </script>
+                </section>
+            </section>
+            <section data-background-image="" data-transition="zoom">
+                <section>
+                    <h3 style="margin-bottom: 0;">Bounded Context</h3>
+                    <ul>
+                        <li class="fragment">Kontekst ograniczony, kontekst związany</li>
+                        <li class="fragment">Przestrzeń rozwiązania</li>
+                        <li class="fragment">Obszar stosowania danego modelu
+                            <ul style="font-size: .9em;">
+                                <li class="fragment">
+                                    Model - abstrakcje wybranych aspektów domeny, rozwiązujące problemy z nią zwiazane
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Skończony system</li>
+                        <li class="fragment">Granica pojęciowa</li>
+                        <li class="fragment">Niby DDD = domeny, ale BC nawet ważniejszy
+                            <ul>
+                                <li class="fragment">Co możemy zakodzić</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">BC = potencjalny mikroserwis</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3 style="margin-bottom: 0;">Ubiquitous Language</h3>
+                    <ul style="font-size: .9em;">
+                        <li class="fragment">"Wszechobecny język", platforma komunikacji</li>
+                        <li class="fragment">Współdzielony język rozwijany przez zespół (ekspertów dziedziny i
+                            programistów)</li>
+                        <li class="fragment">Opis reguł działania biznesu</li>
+                        <li class="fragment">W dokumentacji, w rozmowach ekspertów, w&nbsp;rozmowach programistów, w
+                            kodzie
+                        </li>
+                        <li class="fragment">
+                            Niezgoda ekspertów w kwestii pojęć? <span class="fragment">Niepełne zrozumienie i szansa na
+                                poprawę</span>
+                            <ul>
+                                <li class="fragment">A może eksperci z innych kontekstów? :)</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Np. "produkt" w magazynie, "produkt" w koszyku zakupowym</li>
+                        <li class="fragment">Szukamy najlepszego języka dla projektu</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>BC a język</h3>
+                    <ul>
+                        <li class="fragment">Wszechobecny język zawsze w obrębie kontekstu, 1:1</li>
+                        <li class="fragment">Wspólne rozumienie pojęć w obrębie kontekstu</li>
+                        <li class="fragment">
+                            BC mniejsze niż się początkowo wydaje, ale wystarczająco duże, żeby uchwycić kompletny UL
+                            danej dziedziny biznesowej
+                        </li>
+                        <li class="fragment">
+                            <code>AccountUtil</code>, <code>AccountHelper</code> - to nie jest język ekspertów, usuwać z
+                            kodu
+                        </li>
+                        <li class="fragment">Można utrzymywać słowniczek pojęć jako dokumentację</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>BC - przykład</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 50%; text-align: center; border-right: 1px solid white;"><img
+                                        src="img/redhood.webp" class="pure-img fragment" style="height: 3em;" />
+                                </th>
+                                <th style="width: 50%; text-align: center;"><img src="img/3pigs.png"
+                                        class="pure-img fragment" style="height: 3em;" /></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="2" style="text-align: center;" class="fragment">Mama</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align: center;" class="fragment">Dom</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align: center;" class="fragment">Wilk</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <aside class="notes">
+                        Dziewczynka, myśliwy, babcia, 3 świnki, ale też kilka wspólnych pojęć. Jednak co innego w kazdym
+                        BC
+                    </aside>
+                </section>
+                <section>
+                    <h3>
+                        Moduły
+                    </h3>
+                    <ul>
+                        <li class="fragment">Kontekst wyznacza granice lingwistyczne, ale możemy tam mieć kilka modułów
+                        </li>
+                        <li class="fragment">Moduły ~ pakiety w Javie</li>
+                        <li class="fragment">Źle dobrane moduły prowadzą do modelu anemicznego
+                            <ul>
+                                <li class="fragment"><code>controllers</code>, <code>services</code>,
+                                    <code>entities</code>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Hermetyzacja, kontrakty
+                            <ul>
+                                <li class="fragment">Klient naszego kodu nie powinien wiedzieć jak to działa. Co robi, a
+                                    nie jak</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <aside class="notes">
+                        Auto to system modularny - karoseria, zawieszenia, skrzynia biegów
+                        <br>
+                        Pociąg - wiązania między modułami (wagonami). Da się szybko wymieniać wiązania między modułami.
+                        Są
+                        trwałe, ale wymienialne. Wagony sypialne, z przedziałami, bez, restauracyjne
+                        <br><br>
+                        Evans sugeruje import *, żeby odzwierciedlać zależność od całego "modułu".
+                        <br>
+                        Co prawda klasa (building block) zależy wtedy od całego modułu, więc powiązanie 2 różnych
+                        poziomów, ale Java 9+ daje też zwykłe moduły, więc można kminić
+                        <br>
+                        Może być łatwiej wychwycić - klasa z modułu A zależy od modułu B, a nie wydaje, żeby moduł A
+                        powinien zależeć od modułu B
+                    </aside>
+                </section>
+                <section>
+                    <h3>Model</h3>
+                    <div>
+                        <img class="pure-img fragment" style="height: 200px" src="img/maps/admin.jpg" />
+                        <img class="pure-img fragment" style="height: 200px" src="img/maps/top.jpg" />
+                        <img class="pure-img fragment" style="height: 200px" src="img/maps/roads.png" />
+                    </div>
+                    <ul>
+                        <li class="fragment">Odwzorowanie pomysłu, fragmentu rzeczywistości</li>
+                        <li class="fragment">Uproszczenie, pewna interpretacja</li>
+                        <li class="fragment">Wyodrębnienie niektórych, przydatnych do rozwiązania problemu aspektów</li>
+                        <li class="fragment">Pominięcie zbyt szczegółowych</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Model - kod</h3>
+                    <ul>
+                        <li class="fragment">Zestaw klas/funkcji</li>
+                        <li class="fragment">
+                            Zachowania i zestawy danych do zachowań
+                            <ul>
+                                <li class="fragment"><code>Książka + cena</code></li>
+                                <li class="fragment"><code>Książka + lokalizacja w magazynie</code></li>
+                                <li class="fragment">Tylko pozorne łamanie DRY, bo to są książki w innych aspektach</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">DDD = dobre programowanie obiektowe</li>
+                        <li class="fragment">Obiekty hermetyzują pola, udostępniają zachowania
+                            <ul>
+                                <li class="fragment"><code>getTitle</code> to nie zachowanie</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>
+                        Anemiczny model
+                    </h3>
+                    <ul>
+                        <li class="fragment">Worek na dane, dla ORM i innych mapperów</li>
+                        <li class="fragment">Walidowanie i procesowanie nie na poziomie obiektów, tylko gdzieś w
+                            serwisach</li>
+                        <li class="fragment">W Javie spopularyzowany przez <code>JavaBean</code> i&nbsp;pierwsze wersje
+                            Hibernate'a i innych</li>
+                        <li class="fragment">Kopiowanie wzorców z poprzednich projektów, przykładów</li>
+                        <li class="fragment">Zły, bo wysokie koszty rozwijania</li>
+                    </ul>
+                    <aside class="notes">
+                        JavaBean - standard pod narzędzia wizualizujące w Javie (~Visual Basic)
+                        <br>
+                        Hibernate i inne też potrzebowały getterów i setterów
+                    </aside>
+                </section>
+                <section>
+                    <h3 style="margin-bottom: 0;">Anemiczny model - wady</h3>
+                    <ul>
+                        <li class="fragment">Rozwija się niezależnie od zachowań</li>
+                        <li class="fragment">Rozrastające się serwisy i worki na dane
+                            <ul>
+                                <li class="fragment">"O, mam już klasę <code>Book</code>"</li>
+                                <li class="fragment">Promowanie podejścia "wszyscy mają dostęp do wszystkiego"</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Bez zachowań - niepełne rozumienie pojęć
+                            <ul>
+                                <li class="fragment">Łatwiej coś nazwać, gdy mamy zachowania niż dopasowywać zachowania
+                                    do nazwy</li>
+                                <li class="fragment"><code>set</code> i <code>get</code> zubażają nasz język</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Mogłyby być same SQL-e w kodzie albo całość na poziomie procedur
+                            składowanych bazy</li>
+                    </ul>
+                </section>
+                <section>
+                    <blockquote>
+                        Projektujemy zachowania obiektów.
+                        <div class="fragment">Zachowania mają być właściwie nazwane, żeby oddawać istotę języka
+                            wszechobecnego</div>
+                    </blockquote>
+                </section>
+                <section>
+                    <pre><code class="java" data-trim>
+                        customer.setCallingTime(CallingTime.DEFAULT);
+                        customer.setCallingConsultant(consultant);
+                    </code></pre>
+                    <p class="fragment" data-fragment-index="1">vs.</p>
+                    <pre class="fragment" data-fragment-index="1"><code class="java" data-trim>
+                        customer.callAtDefaultTime(consultant);
+                    </code></pre>
+                    <p class="fragment" data-fragment-index="2">vs.</p>
+                    <pre class="fragment" data-fragment-index="2"><code class="java" data-trim>
+                        var time = callCenter.getDefaultCallingTime();
+                        consultant.call(customer, time);
+                    </code></pre>
+                    <p class="fragment" data-fragment-index="3">vs.</p>
+                    <pre class="fragment" data-fragment-index="3"><code class="java" data-trim>
+                        callCenter.call(customer, choosingConsultantPolicy);
+                    </code></pre>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ### Ćwiczenie 3
+                        
+                        1. <!-- .element: class="fragment Fz(.75em)" --> Pobrać i otworzyć kod z folderu "app"
+                        1. <!-- .element: class="fragment Fz(.75em)" --> Popatrzeć na moduł `task`. Co jest modelem? Gdzie jest logika?
+                        1. <!-- .element: class="fragment Fz(.75em)" --> Przerobić funkcję `save` z `TaskFacade` - przenieść logikę do modelu
+                        1. <!-- .element: class="fragment Fz(.75em)" --> Usunąć gettery (poza `getChangesCount`) i settery z encji `Task`. Skorzystać wszędzie z nowej logiki modelu
+                        1. <!-- .element: class="fragment Fz(.75em)" --> Jakie reguły warto dodać? Co jeszcze poprawić?
+                        1. <!-- .element: class="fragment Fz(.75em)" --> Przykładowo
+                           1. <!-- .element: class="fragment" --> `toggle()` do zmiany stanu i licznika
+                           1. <!-- .element: class="fragment" --> `switchTo(boolean state)` - takie `toggleIfNeeded`
+                           1. <!-- .element: class="fragment" --> `updateInfo` do zmiany dodatkowych informacji
+                           1. <!-- .element: class="fragment" --> Nowa reguła - nie można edytować zrobionego taska
+                    </script>
+                </section>
+            </section>
+            <section data-background-image="" data-transition="zoom">
+                <section>
+                    <h3>Domena, kontekst, model</h3>
+                    <table style="font-size: .75em;">
+                        <thead>
+                            <tr>
+                                <th style="width: 50%;">Domena</th>
+                                <th style="width: 50%;">Bounded Context</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="fragment">
+                                <td>problem</td>
+                                <td>rozwiązanie</td>
+                            </tr>
+                            <tr class="fragment">
+                                <td>odkrywamy</td>
+                                <td>definiujemy</td>
+                            </tr>
+                            <tr class="fragment">
+                                <td>domena</td>
+                                <td>model domenowy</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br />
+                    <ul style="font-size: .9em;">
+                        <li class="fragment">Idealnie 1 domena = 1 BC</li>
+                        <li class="fragment">Analogia: podłoga=problem, wykładzina=rozwiązanie</li>
+                        <li class="fragment">Nowy projekt - idealne dobranie wykładziny do podłogi</li>
+                        <li class="fragment">
+                            Isniejący projekt - dywan, wykładzina i szafka, która przykrywa niepełne pokrycie podłogi
+                        </li>
+                    </ul>
+                </section>
+                <section data-background-image="">
+                    <img src="img/ecommerce.png" class="pure-img">
+                    <aside class="notes">
+                        Za dużo ogarnia jeden model. W praktyce 2 modele na kilka dziedzin + system zewnętrzny
+                        przewidujący dostawy
+                        <br />
+                        Dla małej firmy ogarniającej sprzedaż detaliczną, system prognozujący mógłby być
+                        dziedziną główną - pomaga uzyskać przewagę konkurencyjną i optymalnie, dokładnie zarządzać
+                        zasobami
+                        <br />
+                        Przykłady - w ecommerce za dużo pomieszania pojęć klient, produkt
+                        <br />
+                        Subdomeny mogą nachodzić na siebie, np. zamówienie zazębia się z dostępnością, ale modele
+                        powinny być osobne i łączone zestawami danych (API, będzie potem)
+                    </aside>
+                </section>
+                <section>
+                    <h3>Idealne konteksty</h3>
+                    <ul>
+                        <li class="fragment">Jak najbardziej autonomiczne w decyzjach
+                            <ul>
+                                <li class="fragment">Minimalizacja synchronizacji</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Jak najmniej kontekstów zaangażowanych w pojedynczy proces biznesowy
+                            <ul>
+                                <li class="fragment">Np. proces zamówienia = tylko modele zamówienia i dostępności</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Informacje nie powinny się zmieniać w kilku kontekstach jednocześnie</li>
+                        <li class="fragment">Zespół per kontekst. Jak z mikroserwisami</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3 style="margin-bottom: 0;">Rozmowy z ekspertami</h3>
+                    <ul>
+                        <li class="fragment">Szukanie antywymagań, "podpuszczanie"
+                            <ul style="font-size: .9em;">
+                                <li class="fragment">Cel: minimalizacja synchronizacji</li>
+                                <li class="fragment">"Czy historia lokat może wpływać na ofertę kredytu?"</li>
+                                <li class="fragment">
+                                    Jeśli tak to może konteksty produktów dla klientów indywidualnych i firmowych
+                                    zamiast
+                                    kontekstu lokat i kontekstu kredytów?
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Walidowanie pojęć
+                            <ul style="font-size: .9em;">
+                                <li class="fragment">"Czy użytkownik na pewno powinien istnieć w danym kontekście?"</li>
+                                <li class="fragment">Np. kontekst dyskusji to nie "użytkownicy", a&nbsp;"moderator" i
+                                    "autor wpisu"</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Ćwiczenie 4
+
+                        1. <!-- .element: class="fragment" --> Przejrzeć wypisane wcześniej subdomeny
+                        1. <!-- .element: class="fragment" --> Rozwinąć, wydzielić następne, połączyć itd.
+                        1. <!-- .element: class="fragment" --> Zidentyfikować rozwiązania (Bounded Contexty, modele, systemy)
+                        1. <!-- .element: class="fragment" --> Jak wyglądają mapowania dziedzina-BC?
+                    </script>
+                </section>
+            </section>
+            <section>
+                <section data-background-image="" data-transition="zoom">
+                    <h3 style="margin-bottom: 0;">Process Modelling</h3>
+                    <ul style="line-height: 1.15;">
+                        <li class="fragment">Szukanie kontekstów dla domen</li>
+                        <li class="fragment">Nie odkrywamy, tylko definiujemy, projektujemy rozwiązania
+                            <ul style="font-size: .9em;">
+                                <li class="fragment">Jakie problemy (subdomeny) do rozwiązania?</li>
+                                <li class="fragment">Np. "gdzie to leży i skąd się wzięło" = sytem magazynowy</li>
+                                <li class="fragment">Dużo zdarzeń, a mało logiki, reguł = tylko logika prezentacyjna
+                                </li>
+                                <li class="fragment">Dużo par komenda-zdarzenie = CRUD</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Usuwanie zbędnych zdarzeń i rozkładanie innych na bardziej szczgółowe</li>
+                        <li class="fragment">Rozwiązywanie hotspotów
+                            <ul style="font-size: .9em;">
+                                <li class="fragment">Np. "Trwa za długo" - czyli ile? A ile powinien?</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <img src="img/pmes.png" class="pure-img" style="width: 75%;">
+                </section>
+                <section>
+                    <h3 style="margin-bottom: 0;">Selekcja zdarzeń - 1/2</h3>
+                    <ul style="font-size: .85em; line-height: 1.1;">
+                        <li class="fragment">Środowiskowe
+                            <ul>
+                                <li class="fragment">
+                                    Nie z procesu, a z otoczenia procesu ("Klient wszedł do sklepu")
+                                </li>
+                                <li class="fragment">Odrzucamy, ale poszerzają horyzonty np. managera</li>
+                                <li class="fragment">Myślenie "przyszłościowe"</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">UI-owe, interfejsowe
+                            <ul>
+                                <li class="fragment">Nie z przestrzeni procesu biznesowego</li>
+                                <li class="fragment">"Wyświetlono formularz X", "Wybrano datę z kalendarza"</li>
+                                <li class="fragment">Czasem konieczne przełamywanie tego myślenia</li>
+                                <li class="fragment">"Co jeszcze się zmienia oprócz widoczności przycisku?"</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Infrastrukturalne
+                            <ul>
+                                <li class="fragment">Z przestrzeni technicznej</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Domenowe</li>
+                    </ul>
+                    <aside class="notes">
+                        Niektóre pomagają "technicznym" i userom uchwycić kontekst, ale potem odrzucamy
+                        <br />
+                        Zweryfikowano X - podczas Big Picture OK, ale potem prędzej przełoży się na jakieś reguły
+                        <br />
+                        Wybrano z kalendarza - prędzej wsad do komendy podczas Process-Level, Big Picture mógł to mieć
+                    </aside>
+                </section>
+                <section>
+                    <h3 style="margin-bottom: 0;">Selekcja zdarzeń - 2/2</h3>
+                    <ul>
+                        <li class="fragment">Zdarzenia - istotne zmiany</li>
+                        <li class="fragment">Zmiana statusu nie jest istotna
+                            <ul style="font-size: .9em;">
+                                <li class="fragment">
+                                    Istotne jakie zdarzenia w konsekwencji. Zmiana stanu agregatów, a nie statusu
+                                </li>
+                                <li class="fragment">
+                                    Zamiast "Order Confirmed" wyciągamy np. "Items blocked", "Prices Frozen"
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Pytania do każdego zdarzenia
+                            <ul style="font-size: .9em;">
+                                <li class="fragment">Dlaczego to się zmienia (dlaczego jest ważne)?</li>
+                                <li class="fragment">Kto i po co to zmienia? Jak realizujemy?</li>
+                                <li class="fragment">Jakie są konsekwencje tej zmiany?</li>
+                                <li class="fragment">Czy można wycofać tę zmianę?</li>
+                                <li class="fragment">Czy można powtórzyć tę zmianę?</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <aside class="notes">
+                        Dlaczego - zamiast "Order Confirmed", co jest modelowaniem bazy danych wyciągamy wtedy np.
+                        "Items blocked", "Prices Frozen"
+                        <br /><br />
+                        Po co to zdarzenie? - szukamy alternatywnych wejść i wyjść z systemu
+                        <br /><br />
+                        Jak realizujemy to zdarzenie "Client charged"? I wtedy "Payer charged", "Debit incurred",
+                        "Reputation changed"
+                        <br /><br />
+                        Pytamy biznes - na jakie główne pytania chcecie dostać odpowiedź z tego systemu? Np. "Jaka jest
+                        reputacja klienta?"
+                        <br />
+                        I wtedy "zaznaczcie mi zdarzenia (zmiany stanu), które mają wpływ na tę reputację"
+                        <br />
+                        Jakaś kropka albo mała karteczka doklejana do karteczki zdarzenia
+                        <br />
+                        Każde pytanie np. innym kolorem, żeby odróżniać
+                        <br />
+                        Gdyby kilka pytań było adresowanych tymi samymi zdarzeniami, to może tak naprawdę pytamy o to
+                        samo, ale innymi słowami. Np. "ile coś kosztuje", "ile mam wypłacić prowizji" - te same reguły i
+                        dane, żeby na to odpowiedzieć
+                    </aside>
+                </section>
+                <section>
+                    <a href="https://kahoot.it/">
+                        <img src="img/kahoot.svg" class="pure-img">
+                    </a>
+                </section>
+            </section>
+            <section data-background-image="" data-transition="zoom">
+                <section>
+                    <h3>Nowy problem</h3>
+                    <ul>
+                        <li class="fragment">Mapujemy domeny i konteksty</li>
+                        <li class="fragment">Jaka nazwa nowej domeny? Jaka wizja?</li>
+                        <li class="fragment">Które pojęcia są jej częścią?</li>
+                        <li class="fragment">Czy warto podzielić ją na subdomeny?</li>
+                        <li class="fragment">Kto powinien nad nią pracować i czy można stworzyć odpowiednie zespoły?
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h3 style="margin-bottom: 0;">Kontekst dla domeny</h3>
+                    <ul style="font-size: .9em; line-height: 1.15;">
+                        <li class="fragment">Jakie oprogramowanie już mamy? Czy może być wykorzystane?</li>
+                        <li class="fragment">Co kupić lub stworzyć?</li>
+                        <li class="fragment">Jak zintegrować/połączyć te systemy?</li>
+                        <li class="fragment">Jakie dodatkowe mechanizmy integracji?</li>
+                        <li class="fragment">Jakie wymagane nakłady pracy?</li>
+                        <li class="fragment">Czy inicjatywa strategiczna ma wysokie prawdopodobieństwo sukcesu?</li>
+                        <li class="fragment">Czy pojęcia z języków wszechobecnych są całkowicie różne?</li>
+                        <li class="fragment">Gdzie występują części wspólne? Jak są one mapowane pomiędzy BC?</li>
+                        <li class="fragment">Który BC zawiera pojęcia z domeny głównej?</li>
+                    </ul>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Ćwiczenie 5
+
+                        Wypisać pojęcia, "słowniki" w wyznaczonych wcześniej Bounded Contextach. Czy BC mają charakterystyczne wszechobecne języki? Jak to poprawić? <!-- .element: class="fragment" -->
+                    </script>
+                </section>
+                <section>
+                    <h3 style="margin-bottom: 0; font-size: 1.2em;">
+                        Integracje kontekstów - 1/3
+                    </h3>
+                    <ul style="font-size: .9em;">
+                        <li class="fragment">Partnership (partnerstwo)
+                            <ul>
+                                <li class="fragment">Zespoły pracują razem</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">
+                            Shared Kernel (jądro współdzielone)
+                            <ul>
+                                <li class="fragment">Podzbiór modelu dzielony między zespołami</li>
+                                <li class="fragment">Zmiany w części wspólnej wymagają konsultacji</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">
+                            Customer-Supplier (klient-dostawca)
+                            <ul>
+                                <li class="fragment">
+                                    Supplier zgadza się na pewien interfejs, wypełnia go i dostarcza implementację
+                                </li>
+                                <li class="fragment">
+                                    Konteksty mogą ewoluować niezależnie do czasu zmian w interfejsie
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Conformist (konformista)
+                            <ul>
+                                <li class="fragment">Jw., ale dostawca ignoruje potrzeby klienta</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <aside class="notes">
+                        Customer-Supplier - w Allegro tak mieliśmy z klientem do usługi testów A/B; w praktyce supplier
+                        może publikować open hostem z published lang i też mamy Customer-Supplier
+                        <br />
+                        Conformist - jak mamy jakąś firmę, gdzie outsource'ujemy część systemu i każemy się im
+                        dostosować, brutalny sposób
+                    </aside>
+                </section>
+                <section>
+                    <h3 style="margin-bottom: 0; font-size: 1.2em;">
+                        Integracje kontekstów - 2/3
+                    </h3>
+                    <ul style="font-size: .85em; line-height: 1.15;">
+                        <li class="fragment">Anticorruption Layer, ACL (warstwa zapobiegająca uszkodzeniu)
+                            <ul>
+                                <li class="fragment">
+                                    Klient dostarcza sobie własną implementację, warstwę "izolacyjną", "tłumaczeniową",
+                                    bliższą swojemu kontekstowi
+                                </li>
+                                <li class="fragment">Ta warstwa korzysta z oficjalnych API/klienta innego kontekstu</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Open Host Service (usługa otwartego hosta)
+                            <ul>
+                                <li class="fragment">Oficjalne API (REST, RPC)</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Published Language (język opublikowany)
+                            <ul>
+                                <li class="fragment">Publikowanie zgodnie ze wspólnym językiem pomiędzy kontekstami</li>
+                                <li class="fragment">Często łączy się z Open Host Service</li>
+                                <li class="fragment">+ kolejki, eksport plików</li>
+                                <li class="fragment">JSON, XML, ProtoBuf, zdarzenia</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <aside class="notes">
+                        ACL - np. integracja z monolitem. Ten system e-commerce mógłby mieć kilka ACL do różnych
+                        kontektsów; symulacja lepszych BC
+                        <br />
+                        Published Lang - w Allegro np. zmiany w ofertach
+                    </aside>
+                </section>
+                <section>
+                    <h3 style="margin-bottom: 0; font-size: 1.2em;">
+                        Integracje kontekstów - 3/3
+                    </h3>
+                    <ul>
+                        <li class="fragment">Separate Ways (oddzielne drogi)
+                            <ul>
+                                <li class="fragment">Coś usunąć, coś lepiej wydzielić i z głowy :)</li>
+                                <li class="fragment">Minimalizowanie integracji</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Big Ball of Mud (wielka kula błota)
+                            <ul>
+                                <li class="fragment">Stan do jakiego dążą systemy</li>
+                                <li class="fragment">Gdy nie myśleliśmy o integracji</li>
+                                <li class="fragment">Zabezpieczać się, żeby taki stan nie "wyciekł" do innych kontekstów
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Async > sync</h3>
+                    <ul>
+                        <li class="fragment">Async = eventual consistency</li>
+                        <li class="fragment">Brak problemów SLA</li>
+                        <li class="fragment">Odwzorowanie zewnętrznych danych w swoim kontekście (cache)</li>
+                        <li class="fragment">Niekoniecznie kolejki - np. odpytywane cyklicznie API
+                            <code>/notifications</code>
+                        </li>
+                    </ul>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Ćwiczenie 6
+
+                        1. <!-- .element: class="fragment" --> Uchwycić aktualny stan systemu
+                        1. <!-- .element: class="fragment" --> Który kontekst rozmawia z którym i w jaki sposób?
+                        1. <!-- .element: class="fragment" --> Podczas rysowania zależności konteksty "na górze" powinny wpływać na te "na dole", np. supplier nad customerem
+                    </script>
+                </section>
+            </section>
+            <section data-background-image="" data-transition="zoom">
+                <section>
+                    <h3 style="margin-bottom: 0;">
+                        Design-Level ES
+                    </h3>
+                    <ul>
+                        <li class="fragment">Z ekspertami z domeny. Sesja per BC</li>
+                        <li class="fragment">Komendy i zdarzenia będące konsekwencjami łączymy przy pomocy reguł</li>
+                        <li class="fragment">Ma być gotowe do zakodzenia!</li>
+                        <li class="fragment">Interesariusze muszą być "reasonably happy"</li>
+                        <li class="fragment">Wszystkie hotspoty zaadresowane</li>
+                        <li class="fragment">Dobrze określone, spójne ("reasonably consistent") komponenty</li>
+                        <li class="fragment">Widoczne granice</li>
+                        <li class="fragment">Check: od jutra to kodzisz. Czegoś Ci brakuje? Ostatnia szansa</li>
+                    </ul>
+                    <aside class="notes">
+                        Szukanie nowych rzeczy - szybsze i tańsze niż w kodzie
+                        <br>
+                        O tym więcej jutro + przełożenie na kod
+                    </aside>
+                </section>
+                <section>
+                    <img src="img/sdes.png" class="pure-img" style="width: 70%;">
+                </section>
+                <section>
+                    <img src="img/picture-that-explains-everything.jpg" class="pure-img" style="width: 70%;">
+                </section>
+                <section>
+                    <h3>Artykuły Design-Level ES</h3>
+                    <ul>
+                        <li>
+                            <a href="https://github.com/mariuszgil/awesome-eventstorming">
+                                github.com/mariuszgil/awesome-eventstorming
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://buildplease.com/pages/fpc-1/">
+                                Seria "First Pop Coffee Company"
+                            </a> - od Big Picture aż do kodu (w C#)
+                        </li>
+                        <li>
+                            <a
+                                href="https://philippe.bourgau.net/detailed-agenda-for-a-ddd-design-level-event-storming-part-1/">
+                                Detailed agenda for a DDD Design-Level Event Storming - part 1
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="https://philippe.bourgau.net/detailed-agenda-for-a-ddd-design-level-event-storming-part-2/">
+                                Detailed agenda for a DDD Design-Level Event Storming - part 2
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="https://philippe.bourgau.net/7-tactics-that-will-make-your-ddd-design-level-event-storming-pay-off/">
+                                7 tactics that will make your DDD Design-Level Event Storming pay-off
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Przykład 3 świnek</h3>
+                    <div style="display: flex; align-items: center;">
+                        <div>
+                            <a href="https://disney.fandom.com/wiki/The_Three_Little_Pigs?file=18706.jpg">
+                                <img src="img/pig.jpg" class="pure-img fragment" style="width: 250px;">
+                            </a>
+                            <br>
+                            <img src="img/homer.jpg" class="pure-img fragment" style="height: 120px;">
+                            <img src="img/proletariat.png" class="pure-img fragment" style="height: 120px;">
+                        </div>
+                        <div>
+                            <a href="https://disney.fandom.com/wiki/The_Three_Little_Pigs?file=1933-cochons-07.jpg">
+                                <img src="img/wolf-blow.png" class="pure-img fragment" style="width: 250px;">
+                            </a>
+                        </div>
+                        <div>
+                            <a href="https://disney.fandom.com/wiki/The_Three_Little_Pigs?file=THREE_LITTLE_PIGS.png">
+                                <img src="img/house.png" class="pure-img fragment" style="width: 250px;">
+                            </a>
+                            <br>
+                            <img src="img/material/straw.png" class="pure-img fragment" style="width: 100px;">
+                            <img src="img/material/wood.png" class="pure-img fragment" style="width: 100px;">
+                            <img src="img/material/bricks.png" class="pure-img fragment" style="width: 100px;">
+                        </div>
+                    </div>
+                </section>
+                <section data-background-image="img/stop.jpg">
+                    <aside class="notes">Whatever you picked, you should stop right here. It was thinking in nouns, in
+                        data structures, not with the actual behaviors, evnets</aside>
+                </section>
+                <section data-background-image="img/es.jpg" data-background-color="#fff" data-background-size="contain">
+                    <h2 class="fragment">Big Picture</h2>
+                    <aside class="notes">events put in the chronological order</aside>
+                </section>
+                <section data-background-image="img/es2.jpg" data-background-color="#fff"
+                    data-background-size="contain">
+                    <h2 class="fragment">Design-Level</h2>
+                    <aside class="notes">
+                        On these yellow, rectangural cards I wrote an aggregate name already, but there can be just
+                        rules like "check material" (material specification)
+                        <br>
+                        Process-Level - skipping, already a single BC
+                    </aside>
+                </section>
+            </section>
+            <section data-background-image="" data-transition="zoom">
+                <section>
+                    <h3>Eksperci domenowi</h3>
+                    <blockquote class="fragment" style="width: 80%;">
+                        Często nie są świadomi, jak złożone są ich procesy myślowe.
+                        <div class="fragment">
+                            Na co dzień używają reguł zgodnie z&nbsp;zasadami zdrowego rozsądku, usuwają sprzeczności i
+                            niedomówienia.
+                        </div>
+                        <div class="fragment">
+                            Program nie może tego zrobić.
+                        </div>
+                        <div class="fragment">
+                            Rozmawiamy i zwiększamy spójność reguł
+                        </div>
+                    </blockquote>
+                </section>
+                <section>
+                    <h3>Rozmowy z ekspertami</h3>
+                    <ul>
+                        <li class="fragment">Nie zawsze Storming, czasem tylko dopytanie</li>
+                        <li class="fragment">Np. podczas przerw na kawę
+                            <ul>
+                                <li class="fragment">
+                                    Vaughn Vernon: sami przynieśmy kawę, żeby zagadać i wyciągnąć jak najwięcej
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="fragment">
+                            Wylistować pojęcia w zespole, obudować je zachowaniami, przejść przez listę z ekspertem
+                        </li>
+                        <li class="fragment">Grupować pytania, zadawać jak najwięcej jednocześnie</li>
+                    </ul>
+                </section>
+                <section data-background-color="white" data-background-image="img/DDD_Model_Exploration_Whirlpool.png"
+                    data-background-size="contain">
+                    <h4 class="fragment">
+                        <a
+                            href="https://www.domainlanguage.com/ddd/whirlpool/"><b>domainlanguage.com/ddd/whirlpool</b></a>
+                    </h4>
+                    <ul class="fragment" style="color: black; background-color: rgba(255, 255, 255, .75);">
+                        <li>Scenariusz po scenariuszu</li>
+                        <li class="fragment">To są historyjki domenowe, a nie użytkownika</li>
+                        <li class="fragment">Zapisywać - przy ponowieniu opowieści ekspert może użyć innych słów</li>
+                        <li class="fragment">Reguły, zdarzenia, komendy</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>
+                        <a
+                            href="https://github.com/ylorph/RandomThoughts/blob/master/2019.08.16_StormingWithStickies.md">
+                            Bonus: Event Modeling
+                        </a>
+                    </h3>
+                    <ul>
+                        <li class="fragment">Skupienie się na konkretnym scenariuszu</li>
+                        <li class="fragment">Założenie konkretnych reguł</li>
+                        <li class="fragment">Happy path</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3 style="margin-bottom: 0;">DDD strategiczne</h3>
+                    <ul style="font-size: .85em; line-height: 1.15;">
+                        <li class="fragment">
+                            <a href="https://bottega.com.pl/pdf/materialy/ddd/ddd2.pdf">Zaawansowane modelowanie DDD
+                                – techniki strategiczne: konteksty i architektura zdarzeniowa</a> (artykuł)
+                        </li>
+                        <li class="fragment">
+                            <a href="https://www.youtube.com/watch?v=z0y3IPJDyp0">Jak wciągnąć eksperta domenowego w wir
+                                modelowania - techniki DDD</a> (jeszcze przed EventStormingiem)
+                        </li>
+                        <li class="fragment">
+                            <a href="https://www.youtube.com/watch?v=pZWzjqRmOk0">Event Storming</a>
+                        </li>
+                        <li class="fragment">
+                            <a href="https://www.youtube.com/watch?v=u4aFjePJJTM">
+                                Event Storming - od analizy do architektury
+                            </a>
+                        </li>
+                        <li class="fragment">
+                            <a href="https://www.youtube.com/watch?v=GEjp_jOT2K4">
+                                Poznaj swoje granice - o odkrywaniu granic obiektów i modułów
+                            </a>
+                        </li>
+                        <li class="fragment">
+                            <a href="https://www.youtube.com/watch?v=v4xLxmpAFdI">
+                                Remote EventStorming (not Event Storming): Redesigning Everything
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+            </section>
+            <!--<section data-background-image="" data-transition="zoom">
+                <section>
+                    <h1>DDD</h1>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <h3>Strategiczne</h3>
+                                </td>
+                                <td>
+                                    <h3 class="fragment highlight-red">Taktyczne</h3>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3>Design-Level - cd.</h3>
+                    <ul>
+                        <li class="fragment">Pracujemy na regułach</li>
+                        <li class="fragment">
+                            Np. "czy karta wygasła", "czy karta zastrzeżona" to może być 1 reguła - "czy karta aktywna"
+                        </li>
+                        <li class="fragment">
+                            Jak już znamy komendy, widoki, zdarzenia (oznajmianie czegoś), to łatwo zacząć z BDD
+                        </li>
+                        <li class="fragment">BDD - w warstwie aplikacji, owijającej domenę</li>
+                        <li class="fragment">Testy mają wysterować nasz model</li>
+                        <li class="fragment">
+                            W istniejącym systemie też - zrozumiemy jak coś działa w oderwaniu od aktualnego
+                            rozwiązania
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h3 style="margin-bottom: 0;">Building blocks - 1/5</h3>
+                    <div style="width: 200px; height: 200px;" class="fragment fade-out replace" data-fragment-index="2">
+                        <br>
+                        <img src="img/tactical/entity.png" class="pure-img fragment" data-fragment-index="1" />
+                    </div>
+                    <div style="background-image: url('img/tactical/aggregate.png'); background-size: contain; width: 200px; height: 200px;"
+                        class="fragment fade-in replace" data-fragment-index="2">
+                        <br>
+                        <img src="img/tactical/entity.png" class="pure-img" />
+                    </div>
+                    <ul>
+                        <li class="fragment">Tożsamość określona identyfikatorem</li>
+                        <li class="fragment">Agregowanie/hermetyzacja niezmienników, fizyki biznesu</li>
+                        <li class="fragment">Brak getterów/setterów, metody biznesowe</li>
+                        <li class="fragment">Reguły spójne natychmiast i jednocześnie</li>
+                        <li class="fragment">Np. faktura (dodatnia wartość) z numerem faktury i&nbsp;pozycje na fakturze
+                            (min. 1)</li>
+                    </ul>
+                    <aside class="notes">
+                        Np. PESEL, NIP, numer polisy, numer faktury
+                    </aside>
+                </section>
+                <section>
+                    <h3 style="margin-bottom: 0;">Agregat</h3>
+                    <ul style="font-size: .83em; line-height: 1.15;">
+                        <li class="fragment">Graf obiektów domenowych, spójna całość w obrębie 1 transakcji</li>
+                        <li class="fragment">Nie może istnieć agregat, który nie spełnia swoich reguł</li>
+                        <li class="fragment">
+                            Komunikacja możliwa tylko przez korzeń (aggregate root), czyli np. tylko publiczne metody
+                        </li>
+                        <li class="fragment">Zapisywany i wyciągany w całości (repozytorium)</li>
+                        <li class="fragment">Pomiędzy agregatami - spójność ostateczna/końcowa (eventual consistency)
+                            <ul>
+                                <li class="fragment">
+                                    Rozmawiając z ekspertami nie mówić "niespójne", tylko "dane sprzed X minut/sekund"
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Walidacje - np. <code>BusinessException</code>, rezultat</li>
+                        <li class="fragment">Dobre zamodelowanie zmniejszy ilość relacji między danymi</li>
+                        <li class="fragment">Można rozważać bazy nierelacyjne dla agregatów</li>
+                        <li class="fragment">Nie przekazujemy agregatu do agregatu (efekt domina)</li>
+                    </ul>
+                    <aside class="notes">
+                        Dobre zamodelowanie agregatu zmniejszy ilość relacji między danymi - wychodząc z zachowań
+                        tworzymy pola w klasach. Część danych po prostu hermetyzujemy z innych obiektów, zamiast
+                        odwoływać się do tych obiektów bezpośrednio
+                    </aside>
+                </section>
+                <section>
+                    <h3>
+                        Encje
+                    </h3>
+                    <ul>
+                        <li class="fragment">Mutowalne, więc dbamy o reguły</li>
+                        <li class="fragment">Warto rozbijać</li>
+                        <li class="fragment">Np. jak coś w stylu maszyny stanów, to każdy stan inną encją</li>
+                        <li class="fragment">Kredyt: oferta, draft umowy, umowa</li>
+                        <li class="fragment">Jak agregaty - samotne wyspy, raczej bez powiązań</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3 style="margin-bottom: 0;">Building blocks - 2/5</h3>
+                    <div style="display: flex; align-items: center;">
+                        <ul>
+                            <li class="fragment" data-fragment-index="2">Zapis i odczyt agregatu</li>
+                            <li class="fragment" data-fragment-index="3">Jedna transakcja bazodanowa (~reguły spójne
+                                natychmiast)</li>
+                            <li class="fragment" data-fragment-index="4">Agregat wczytany? Gwarancja niezmienników</li>
+                        </ul>
+                        <img src="img/tactical/repo.png" class="pure-img fragment" data-fragment-index="1" />
+                    </div>
+                    <hr />
+                    <div style="display: flex; align-items: center;">
+                        <img src="img/tactical/service.png" class="pure-img fragment" />
+                        <ul>
+                            <li class="fragment">Bezstanowa logika domenowa</li>
+                            <li class="fragment">Np. kalkulator/księgowy działający na fakturze</li>
+                        </ul>
+                    </div>
+                </section>
+                <section data-background-color="white" data-background-image="">
+                    <h3 class="fragment"
+                        style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%);">Jaka nazwa?
+                    </h3>
+                    <div class="fragment fade-in replace" data-fragment-index="2">
+                        <img class="pure-img" style="width: 40%;" src="img/es-card/3.png" />
+                    </div>
+                    <div class="fragment fade-out replace" data-fragment-index="2">
+                        <img class="pure-img fragment fade-out replace" data-fragment-index="1" style="width: 50%;"
+                            src="img/es-card/1.png" />
+                        <img class="pure-img fragment fade-in replace" data-fragment-index="1" style="width: 50%;"
+                            src="img/es-card/2.png" />
+                    </div>
+                    <aside class="notes">
+                        Gdy mamy reguły, szukamy komend, od których zależą warunki tych reguł i grupujemy
+                        <br />
+                        Komenda i reguła powinny być na tym samym obiekcie + data ważności karty
+                        <br />
+                        Ble, alfa, Gibberish Game
+                        <br />
+                        tutaj jeszcze warto spojrzeć na zdarzenia "odrzucono" - czy to faktyczna zmiana stanu w
+                        systemie? Raczej nie dało się zmienić stanu, więc go nie zmieniliśmy; bardziej odrzucenie
+                        komendy niż zapisanie jakiegoś zdarzenia
+                    </aside>
+                </section>
+                <section data-background-color="white" data-background-image="">
+                    <div>
+                        <img class="pure-img" style="width: 40%;" src="img/es-card/4.png" />
+                    </div>
+                    <aside class="notes">
+                        Odkrywamy pola na podstawie zachowań, metod
+                        <br />
+                        Odwrotnie niż modelowanie przez bazę
+                        <br />
+                        CardCandidate, Card, RestrictedCard, ExpiredCard
+                    </aside>
+                </section>
+                <section>
+                    <h3 style="margin-bottom: 0;">Istniejący system</h3>
+                    <ul style="font-size: .85em; line-height: 1.15;">
+                        <li class="fragment">Bottom-up: wychodzimy od kodu, patrzymy i&nbsp;pytamy</li>
+                        <li class="fragment">Czy to i to musi się zmienić jednocześnie?</li>
+                        <li class="fragment">Ile możemy poczekać z przeliczeniem tego?</li>
+                        <li class="fragment">Czy coś się stanie, jak się spóźnimy i&nbsp;zejdziemy na ujemny debet?</li>
+                        <li class="fragment">Czy płatność może pojawić się w historii dopiero po kilku minutach?</li>
+                        <li class="fragment">
+                            Jak wychwycimy co spójne natychmiast, atomowo, to mamy granice agregatu
+                        </li>
+                        <li class="fragment">
+                            Czasem łatwiej "spłaszczyć" kilka klas - zamienić wszystko w 1 procedurę. Chwytamy proces,
+                            szukamy reguł spójności i dopiero dzielimy na klasy
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>
+                        <a href="https://gregfyoung.wordpress.com/2012ń/02/28/the-gibberish-game/">
+                            Gibberish Game
+                        </a>
+                    </h3>
+                    <ul style="font-size: .9em">
+                        <li class="fragment">Na etapie refactoru, ale też przy nowych rzeczach</li>
+                        <li class="fragment">Nie <code>Payer</code>, bo to nas "zafiksuje" (być może źle), ukształtuje
+                            sposób myślenia o zakresie</li>
+                        <li class="fragment">odpowiedzialności</li>
+                        <li class="fragment"><code>Payerish</code></li>
+                        <li class="fragment">Zmieniamy nazwę dopiero po przeanalizowaniu i&nbsp;głębszemu zrozumieniu
+                        </li>
+                        <li class="fragment">Alternatywnie: <code>Ble</code>, <code>Bla</code>, <code>Alfa</code>,
+                            <code>Beta</code>
+                        </li>
+                        <li class="fragment">3 perspektywy patrzenia na obiekt: Being (pola), Behaving (metody),
+                            Becoming (koszyk -> zamówienie)</li>
+                        <li class="fragment">Jak poznamy te perspketywy łatwiej nam będzie z&nbsp;zwą</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Warstwa aplikacji</h3>
+                    <ul style="font-size: .9em">
+                        <li class="fragment">
+                            Komponenty interfejsu użytkownika, punkty końcowe, ukierunkowane na usługi (REST, SOAP)
+                        </li>
+                        <li class="fragment">
+                            Zarządzanie zabezpieczeniami, transakcjami, logami, błędami, publikacja zdarzeń, operacje
+                            bulk, komunikacja z innymi systemami
+                        </li>
+                        <li class="fragment">Fasada dla modelu (punkt wejścia)</li>
+                        <li class="fragment">
+                            Przypadki użycia (user stories) tłumaczone na logikę biznesową, domenową
+                            <ul>
+                                <li class="fragment">Brak logiki domenowej w serwisie aplikacji</li>
+                                <li class="fragment">Zaczytanie agregatu/serwisu domenowego i&nbsp;wołanie jego logiki
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h3 style="margin-bottom: 0;">Building blocks - 3/5</h3>
+                    <img src="img/tactical/vo.png" class="pure-img fragment" />
+                    <img src="img/tactical/event.png" class="pure-img fragment" />
+                    <ul>
+                        <li class="fragment">Nośniki informacji, struktury danych</li>
+                        <li class="fragment">Tożsamość wynikająca z właściwości</li>
+                        <li class="fragment">Np. pieniądz, 2x 50 groszy tożsame z&nbsp;1x&nbsp;1 zł</li>
+                        <li class="fragment">Zdarzenia komunikowane światu (jak ES)</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>VO</h3>
+                    <ul>
+                        <li class="fragment">Dbamy o reguły w konstruktorze/metodzie wytwórczej</li>
+                        <li class="fragment">Niemutowalny</li>
+                        <li class="fragment">Dobrze mieć metody wytwórcze i ukryty konstruktor
+                            <ul>
+                                <li class="fragment">Konstruktor bez walidacji</li>
+                                <li class="fragment">Np. kiedyś min. przelew 100, a teraz 1000 zł</li>
+                                <li class="fragment">Na bazie będą stare przelewy, więc je odtworzymy konstruktorem</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Ćwiczenie 7-->
+
+                        <!--1.--> <!-- .element: class="fragment" --> <!--Pobrać i otworzyć kod z folderu "app"-->
+                        <!--1.--> <!-- .element: class="fragment" --> <!--Przeanalizować istniejące klasy, szczególnie testy aplikacji `CardServiceTest`-->
+                        <!--1.--> <!-- .element: class="fragment" --> <!--Zaimplementować kod aplikacji (`CardService`) i&nbsp;domeny (`Card`)-->
+                        <!--1.--> <!-- .element: class="fragment" --> <!--Uznaniowo - rozszerzyć o dodatkowe testy i&nbsp;klasy
+                    </script>
+                </section>
+            </section>
+            <section data-background-image data-transition="zoom">
+                <section>
+                    <h3>Widoki</h3>
+                    <ul>
+                        <li class="fragment">Wizualizacje na potrzeby front-endu</li>
+                        <li class="fragment">Można np. CQRS - osobne repo do czytania</li>
+                        <li class="fragment">Dedykowane obiekty</li>
+                        <li class="fragment">Odczyt nie zepsuje stanu systemu, nie trzeba sprawdzać reguł</li>
+                    </ul>
+
+                    Widoki - cache, komendy - brak
+                    Widoki - można ponawiać, komendy - nie
+                    Widoków więcej, komend mniej
+
+                    CQRS w obrębie BC
+                    Można mieć 2 bazy/tabele i synchronizować (np. komenda w 2 miejscach, np. zdarzenie po komendzie, na
+                    które nasługuje ReadModelUpdater)
+                </section>
+                <section>
+                    Można jawnie stworzyć sobie klasy "Command"
+                    // pokazać tu 3 świnki
+                    Można też 1 CommandHandler per Command (wtedy trochę bardziej idiotoodporne)
+                    Można mieć CommandBus, co łaczy komendy i handlery; on też może dodać jakiś generyczny handler dla
+                    wszystkich komend (np. logujący, odkładający do bazy)
+                    <aside class="notes">
+                        Omówić kod z zadania - że warstwa aplikacji już jest; testujemy przez serwisy aplikacyjne. To
+                        jest nasza jednostka w teście jednostkowym. Do tego in-mem, żeby śmigało szybko
+                        <br />
+                        Chcemy elastyczności w implementacji, ale oczekujemy stałych zachowań
+                        <br />
+                        Optymalnie między czytelnością, a "czystością" rozwiązania
+                        <br />
+                        Zaczytanie odpowiedniej karty po numerze to już kwestia apki
+                    </aside>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ### Ćwiczenie 8-->
+
+                        <!--1.--> <!-- .element: class="fragment Fz(.75em)" --> <!--Pobrać i otworzyć kod z folderu "cw3/odp"-->
+                        <!--1.--> <!-- .element: class="fragment Fz(.75em)" --> <!--Utworzyć `TaskQueryRepository` jak `TaskRepository`-->
+                           <!--1.--> <!-- .element: class="fragment" --> <!--W `TaskRepository` zostawić tylko `findById`, `save`, `saveAll`, `deleteById`-->
+                           <!--1.--> <!-- .element: class="fragment" --> <!--`count` i `findAllByDoneIsFalseAndProject_Id` przenieść do `TaskQueryRepository`-->
+                           <!--1.--> <!-- .element: class="fragment" --> <!--Dopisać domyślną `areUndoneTasksWithProjectId` korzystającą z `findAllByDoneIsFalseAndProject_Id`-->
+                           <!--1.--> <!-- .element: class="fragment" --> <!--Dopisać `getSingleById` zwracającą `TaskDto`-->
+                           <!--1.--> <!-- .element: class="fragment" --> <!--Dopisać [`<T> Set<T> findAllBy(Class<T> type)`](https://stackoverflow.com/a/48442873/4774651)-->
+                        <!--1.--> <!-- .element: class="fragment Fz(.75em)" --> <!--[Zamienić `TaskWithChangesDto` w interfejs z getterami](https://www.baeldung.com/spring-data-jpa-projections)-->
+                        <!--1.--> <!-- .element: class="fragment Fz(.75em)" --> <!--Usunąć zwracanie `changesCount` z klasy `Task`-->
+                        <!--1.--> <!-- .element: class="fragment Fz(.75em)" --> <!--Skorzystać z `TaskQueryRepository` wszędzie gdzie potrzebne odczyty zadań
+                    </script>
+                </section>
+                <section>
+                    zdarzenia
+                    OK, wiemy jak zawrzeć komendy i reguły w kodzie, więc pora na zdarzenia, od których zaczęliśmy.
+                    Potem widoki
+
+                    podobne do VO
+                    publiczne - dla innych BC; wersjonowane, bez odwołań do wewnętrznych VO
+                    wewnętrzne - dla 2 agregatów
+                    jakiś identyfikator i np. identyfikator przyczyny (źródłowe zdarzenie, komenda, agregat)
+                    jak kilka zdarzeń ze sobą powiązanych, np. wyzwolonych wspólnie, to warto mieć correlation id
+                </section>
+                <section>
+                    Zdarzenia publikowane przez agregaty, udostępniane przez agregaty (getEvents albo zwracane z
+                    komend), zdarzenia publikowane dopiero w warstwie aplikacji (najlepiej w implementacji repo
+                    springowego)
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Ćwiczenie 9-->
+
+                        <!--1.--> <!-- .element: class="fragment" --> <!--Utworzyć interfejs w Javie `DomainEvent`-->
+                        <!--1.--> <!-- .element: class="fragment" --> <!--Zaprojektować interfejs `DomainEventPublisher`-->
+                        <!--1.--> <!-- .element: class="fragment" --> <!--Elastyczność - implementacje mogą zapisywać zdarzenia w bazie, wysyłać kolejkami, wysyłać mechanizmami springowymi-->
+                        <!--1.--> <!-- .element: class="fragment" --> <!--Można napisać implementację zgodnie ze wzorcem [obserwatora](https://en.wikipedia.org/wiki/Observer_pattern)
+                    </script>
+                </section>
+                <section>
+                    O publikacji zdarzeń słów kilka
+
+                    Przypomnienie:
+                    Zdarzenia publikowane przez agregaty, udostępniane przez agregaty (getEvents albo zwracane z
+                    komend), zdarzenia publikowane dopiero w warstwie aplikacji (najlepiej w implementacji repo
+                    springowego)
+
+                    @DomainEvents to problem, gdy działamy w obrębie @Transactional; wtedy nie wołamy repo.save, a
+                    przynajmniej nie musimy, bo bazodanowy commit zapisuje wszystkie zmiany na zarządzanych encjach.
+                    Zdarzenia wtedy nie pójdą
+                    Jak poleci wyjątek podczas w listenerze, to nie będzie ponowienia
+
+                    Ogónie pubikacja zdarzeń i zapis powinny iść w tej samej transakcji, więc może być metoda
+                    @Transactional, a w niej publisher.pubish i zapis na koniec; wtedy uwaga np. na obsługę zdarzenia
+                    wysyłką maila. Nie chcemy 1 transakcji na maila i zapis, mail powinien być osobno
+
+                    Można publikować dopiero po commicie, dając jakiś callback; gdy ręcznie zarządamy transakcjami to
+                    też można po; wtedy jakieś ponawianie publikacji itd. łatwiej // to i powyższe to at most one
+                    delivery (0-1)
+
+                    3. opcja - zapis zdarzeń to opublikowania; publisher może mieć implementację zapisującą i cykliczne
+                    wołanie // at least one delivery (1+)
+
+                    https://www.baeldung.com/spring-data-ddd
+                </section>
+                <section>
+                    Mega: https://docs.spring.io/spring-data/rest/docs/current/reference/html/#reference
+
+                    + https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#core.domain-events
+                </section>
+                <section>
+                    W obecnym agregacie nie mamy jawnych zdarzeń. Zdarzenia to zmiana stanu, więc np. zmniejszenie stanu
+                    konta
+
+                    TODO: obok CRUD użytkowników i odczyt kart razem z użytkownikami (mail, imię, nazwisko - mogą
+                    się zmieniać)
+
+                    !!! sync nowy user/usunięcie usera i odświeżanie listy userów w kartach
+
+                    @EventListener
+
+                    v1 - karta nasłuchuje, a cardinfo robi SQL selecta z kilku tabel
+                    mogłyby być widoki na bazie
+
+                    TODO: ćwiczenie 2
+                    sync 2 - odświeżanie cardinfo - model ma swoją tabelkę i śmiga na zdarzeniach z karty i usera
+                    publikacja zdarzeń z kart - z apki po prostu, na agregacie przez repo/serwis, zwrotka z komend
+                    domeny
+                    Jak tworzona karta ma dodawać zdarzenie do opublikowania, to trzeba metodę statyczną do tworzenia;
+                    Card.activate i ona dodaje coś, czego konstruktor nie
+
+                    Alternatywny sync - komenda idzie w 2 miejsca (apka synchronizuje)
+                </section>
+                <section>
+                    Istniejący system
+                    Zbierać czas wyciągania różnych widoków z bazy
+                    Znaleźć najbardziej kosztowne czasowo i przepisać na zwykły SQL (gdzieś np. przez Hibernate było
+                    ciężko)
+                    Po przepisaniu: część połączeń w obiektach może być niepotrzebna - usunąć
+                    Dodać nowe, dedykowane obiekty - cache, DTO, wyciągane przez query repo
+
+                    szybsze
+                </section>
+                <section>
+                    Polityka w Design-Level ES
+                    To często jest saga/process manager
+                    Jakiś osobny BC/mikroserwis, który zbiera kilka zdarzeń
+                    Dopóki wszystkie się nie wykonają, nie możemy iść dalej
+                    Np. polecenie innego użytkownika: link aktywacyjny, dostał kartę, zrobił transakcję za min. 100 zł -
+                    dopiero po tych 3 zdarzeniach możemy przypisać benefit polecającemu, np. 5% prowizji przy
+                    transakcjach walutowych zamiast 10 - polityka z DDD wstrzykiwana
+
+                    Nasłuchuje na wiele różnych zdarzeń albo np. kilka razy w procesie? Lecimy
+                </section>
+                <section>
+                    Polityka wybierania dostawcy - wysyłamy komendy "przygotuj ofertę" do 3 kurierów np. i potem czekamy
+                    na odpowiedzi
+                    Po otrzymaniu odpowiedzi mamy politykę wyboru dostawcy i skutek
+                    Warto zamodelować czas - ES zdarzenie wyzwalane po starcie polityki z opóźnieniem, np. 3 godziny i
+                    jeśli nie mamy odpowiedzi w tym czasie, to musimy to jakoś obsłuzyć
+                </section>
+                <section>
+                    Silniki workflow (workflow engine), jakieś biblioteki
+                </section>
+                <section>
+                    Konstruujemy
+                    Zachowania modelu (zdarzenia, komendy, widoki, reguły, polityki) - to jest D-L ES, omówiliśmy
+                    Struktury modelu (VO, encje, serwisy domenowe)
+                    Cykl życia modelu (fabryki, repozytoria)
+                </section>
+                <section>
+                    Tych słów można używać z biznesem - pilnujemy definicji, że to ma tożsamość taką, tamto inną
+                    Takie "makiety"; jak na frontendzie mocki ekranów, tak dla nas takie klocki budulcowe; nie UML, żeby
+                    zaangażować biznes
+                </section>
+                <section>
+                    <h3 style="margin-bottom: 0;">Building blocks - 4/5</h3>
+                    <br />
+                    <h4 style="margin-bottom: 0;" class="fragment">Specification</h4>
+                    <ul>
+                        <li class="fragment">Obiektowy <code>if</code>, metoda <code>isSatisfiedBy</code></li>
+                        <li class="fragment">Sterowanie operacjami w domenie</li>
+                        <li class="fragment">Lepsze pokrycie testami</li>
+                    </ul>
+                    <hr />
+                    <h4 style="margin-bottom: 0;" class="fragment">Policy</h4>
+                    <ul>
+                        <li class="fragment">Wzorzec strategii</li>
+                        <li class="fragment">Np. serwis "księgowy" nalicza należność, a w zależności od kraju
+                            przekazujemy inną politykę (strategię) liczenia podatku</li>
+                    </ul>
+                </section>
+                <section>
+                    TODO: Wypłaty w różnych walutach to przez politykę w serwisie domenowym
+                    Serwis apki mógłby teoretycznie szukać polityk i przekazywać, ale może lepiej to zdelegować.
+                    Czujemy, że będzie się rozrastać
+
+                    Aktualny kurs dostarcza aplikacja, ona wie na jakich walutach działamy
+                    Jakieś repo wstrzyknięte do serwisu aplikacji i tam zahardkodowane kursy czy coś. To też by
+                    się odświeżało zdarzeniami z innego BC
+
+                    Serwis domenowy z polityką +10%, 0%, +5zł (Express), +35zł (SWIFT) itd. - to może być przekazywane
+                    do komendy karty.
+                    withdraw(WithdrawalPolicy)
+                    Karta powinna działać w obrębie waluty, bez znajomości waluty, tylko na liczbach
+                </section>
+                <section>
+                    fabryka
+                </section>
+                <section>
+                    repo
+
+                    tu wspomnieć, że wołanie w serwisach aplikacyjnych; w warstwie domeny tylko czysty kod
+                </section>
+                <section>
+                    Wzorzec memento - Snapshot
+                    // 3. sposób zapisu - adnotacje na agregacie, zdarzenia, snap
+                </section>
+                <section>
+                    <h3 style="margin-bottom: 0;">Building blocks - 5/5</h3>
+                    <div>
+                        <img src="img/tactical/snap.png" class="pure-img fragment" />
+                    </div>
+                    <ul>
+                        <li class="fragment">Oszustwo, dodatkowy, nieoficjalny klocek DDD</li>
+                        <li class="fragment">Zrzut stanu, zdjęcie rentgenowskie agregatu</li>
+                        <li class="fragment">Wykorzystywane do mapowania pod API i&nbsp;pod bazę danych</li>
+                    </ul>
+                </section>
+                <section>
+                    TODO: dodać snapshoty do karty i np. tylko na tym będzie zapis // czy to jako ćwiczenie, czy jako
+                    przykład?
+                </section>
+                <section>
+                    <h3>DDD Taktyczne - kod</h3>
+                    <div style="display: flex; width: 100%;">
+                        <code id="ddd-code" style="font-size: .5em;"></code>
+                        <pre style="margin-top: 0; background-color: white; font-size: .5em;"><code class="java" data-trim contentEditable="true" id="e-ddd-code">
+                                public interface Aggregate&lt;ID, T>
+                                       extends DomainEntity&lt;ID, T> {
+                                }
+                            </code></pre>
+                    </div>
+                    <script src="js/treeview.js"></script>
+                    <script>
+                        const t = new TreeView([
+                            {
+                                name: 'io.github.mat3e.ddd', children: [
+                                    {
+                                        name: 'event', children: [
+                                            {
+                                                name: 'DomainEvent.java', children: [], content: `public interface DomainEvent {
+
+    Instant occurredOn();
+
+}` },
+                                            {
+                                                name: 'DomainEventPublisher.java', children: [], content: `public interface DomainEventPublisher {
+
+    void publish(DomainEvent event);
+
+}` },
+                                            {
+                                                name: 'EventsDrivenRepository.java', children: [], content: `public interface EventsDrivenRepository
+ <ID, T extends Aggregate<ID, ?>>
+       extends DomainRepository<ID, T> {
+
+    @Override
+    default T save(T aggregate) {
+        return append(
+            aggregate.getSnapshot().events()
+        );
+    }
+
+    T append(List<? extends DomainEvent> events);
+
+}` },
+                                            {
+                                                name: 'SnapshotWithEvents.java', children: [], content: `public interface SnapshotWithEvents<ID>
+       extends EntitySnapshot<ID> {
+
+    List<? extends DomainEvent> events();
+
+}` }
+                                        ]
+                                    },
+                                    {
+                                        name: 'specification', children: [
+                                            {
+                                                name: 'Specification.java', children: [], content: `@FunctionalInterface
+public interface Specification<T>
+       extends Predicate<T> {
+
+    default boolean isSatisfiedBy(T objectToTest) {
+        return test(objectToTest);
+    }
+
+}` }
+                                        ]
+                                    },
+                                    {
+                                        name: 'vo', children: [
+                                            {
+                                                name: 'EntitySnapshot.java', children: [], content: `public interface EntitySnapshot<ID> {
+
+    ID id();
+
+}` }
+                                        ]
+                                    },
+                                    {
+                                        name: 'Aggregate.java', children: [], content: `public interface Aggregate<ID, T>
+       extends DomainEntity<ID, T> {
+}` },
+                                    {
+                                        name: 'DomainEntity.java', children: [], content: `public interface DomainEntity<ID, T> {
+
+    T getSnapshot();
+
+}` },
+                                    {
+                                        name: 'DomainRepository.java', children: [], content: `public interface DomainRepository
+ <ID, T extends Aggregate<ID, ?>> {
+
+    Optional<T> findById(ID id);
+
+    T save(T aggregate);
+
+}` }
+                                ]
+                            },
+                        ], 'ddd-code');
+                        t.on('select', ({ data: { content } }) => {
+                            const editor = document.getElementById('e-ddd-code');
+                            editor.innerText = content;
+                            editor.focus();
+                            editor.blur();
+                        });
+                        t.expandAll();
+                    </script>
+                </section>
+            </section>
+            <section data-background-image data-transition="zoom">
+                <section data-background-transition="zoom">
+                    <h3 style="margin: 0">Clean Architecture</h3>
+                    <a class="fragment"
+                        href="https://herbertograca.com/2017/11/16/explicit-architecture-01-ddd-hexagonal-onion-clean-cqrs-how-i-put-it-all-together/">
+                        <img src="img/ca.png" class="pure-img" style="margin: 0; width: 75%">
+                    </a>
+                    <img src="img/ultimate-adapter.png" class="pure-img fragment"
+                        style="position: absolute; right: 1em; top: 30%; width: 20%">
+                    <aside class="notes">
+                        In the center we have our business invariants, our rules we want to build on
+                        <br>
+                        This arch helps postponing the decision about the actual implementation
+                    </aside>
+                </section>
+                <section>
+                    <img src="img/layers.png">
+                    Wcześniej też, ale teraz bardziej
+                </section>
+                <section data-background-image="img/modules-bg.png" data-background-image="cover">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td class="fragment" data-fragment-index="2" style="border: none">
+                                    <img src="img/app.png" class="pure-img" style="border: solid 1px white;">
+                                </td>
+                                <td rowspan="2" class="fragment" data-fragment-index="3" style="border: none">
+                                    <img src="img/adapters.png" class="pure-img" style="border: solid 1px white;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fragment" data-fragment-index="1">
+                                    <img src="img/domain.png" class="pure-img" style="border: solid 1px white;">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <img src="img/mono.png" class="pure-img fragment"
+                        style="border: solid 1px white; position: absolute; width: 40%; left: 30%; top: 20%;">
+                    <aside class="notes">
+                        Shared - mentioned interfaces.
+                        <br>
+                        Domain - unit tests, in-out, descriptive (DSL); even business can understand.
+                        <br>
+                        App - use cases/scenarios, User Story, Kotlin's nice forthat. Tests - commands & operating on
+                        the business physics, aggregates, services. I use mocks and checks if command results in repo
+                        save.
+                        <br>
+                        Adapters - adapters for ports from domain and app + input and output ones; package-private
+                        access between modules. Here we add frameworks (e.g. Java Spring), integration testing (Spring
+                        test app). App properties, etc.
+                        <br>
+                        Monolith - main class, but instead of it we could have a couple of microservice apps and each
+                        should take e.g. adapters from another BC.
+                    </aside>
+                </section>
+                <section>
+                    <div class="fragment replace fade-out" data-fragment-index="4">
+                        <div class="fragment replace fade-out" data-fragment-index="2">
+                            <img src="img/schema/0.png" class="pure-img fragment replace fade-out"
+                                data-fragment-index="1">
+                            <img src="img/schema/1.png" class="pure-img fragment replace fade-in"
+                                data-fragment-index="1">
+                        </div>
+                        <div class="fragment replace fade-in" data-fragment-index="2">
+                            <img src="img/schema/5.png" class="pure-img fragment replace fade-out"
+                                data-fragment-index="3">
+                            <img src="img/schema/6.png" class="pure-img fragment replace fade-in"
+                                data-fragment-index="3">
+                        </div>
+                    </div>
+                    <div class="fragment replace fade-in" data-fragment-index="4">
+                        <img src="img/schema/7.png" class="pure-img fragment replace fade-out" data-fragment-index="5">
+                        <img src="img/schema/8.png" class="pure-img fragment replace fade-in" data-fragment-index="5">
+                    </div>
+                    <aside class="notes">
+                        Each BC is a potential microservice
+                        <br>
+                        monolith can have its own "app" and calls adapters from different domains
+                    </aside>
+                </section>
+                <section>
+                    Clean Arch
+
+                    Pokazać alternatywne podejście z ładniejszym rozdzieleniem domain, app, adapters i modułami Mavena
+                    czyszczenie architektury
+                </section>
+                <section>
+                    TODO: ćwiczenie z rozdzieleniem modułów w kontrze do architektury Nabrdalika
+                </section>
+                <section>
+                    Na koniec taki przykład ładny, z rozdzieleniem clean arch i jeszcze pomocniczymi interfejsami, żeby
+                    je zareklamować i omówić
+                </section>
+                <section>
+                    Zastrzeżenie karty jako call center i zastrzerzenie jako właściciel w necie
+                    W praktyce użytkownik musiał się uwiarygodnić w call center i dopiero może zastrzec, więc zawsze
+                    zastrzegamy jako właściciel. Call center podaje id właściciela, ale woła tę samą komendę
+                    POST /customers/PESEL/cards/NR/activations
+                    Idzie data zastrzeżenia i info jakieś?
+                </section>
+                <section>
+                    fristajlo, AMA, przykładowe domeny świnek i Java Clean Arch
+                </section>
+                <section>
+                    TODO: zdarzenia jako źródło prawdy w agregacie
+                </section>
+                <section>
+                    ogarnięcie polityk jako LRP z Design-Level ES, a nie w sensie DDD taktycznego
+                    LRP = Long-Running Process
+
+                    TODO: BC promocji; dorobienie zdarzenia po wypłacie 100 zł i nasłuchiwanie na to; do tego jakiś
+                    referal
+
+                    PromoLrp: różne metody handle i po każdej wołanie applyPromotionIfPossible()
+                    Może mieć dedykowany obiekt PromoData, co posiada metodę canActivate() i kilka innych np.
+                    markTransactionDone()
+
+                    Serwis domenowy kart po wykonaniu się polityki LRP powinien móc wstrzyknąć inną politykę DDD
+                    Np. nowy agregat user w kontekście kart i miałby jakieś punkty promocyjne. Po wypełnieniu LRP
+                    dostawałby dużo punktów, a serwis co robi transfer, pobierałby nie tylko kartę, ale i użytkownika.
+                    Jeśli user.points.qualifyToPremium to można zastosować politykę premium, czyli 5% zamiast 10
+
+                    Alternatywnie karta ma jakieś punkty promocyjne, a da się ją zidentyfikować po użytkowniku
+
+                    Przekombinowany przykład?
+                    Może być też fabryka polityk w serwisie i fabryka oczekuje karty albo info o karcie (punkty czy coś)
+
+                    Jakiś setup polityki. Polityka zawsze użyta, ale czasem dodaje 10, a czasem 5%. Taka konfiguracja,
+                    policy.changeChargeForExternalTransfer
+                </section>
+                <section>
+                    <li class="fragment">
+                        <a href="https://www.youtube.com/watch?v=do-xqIbKZ_8">DDD Q&A - wersja rozszerzona</a>
+                    </li>
+                    <li class="fragment">
+                        <a href="https://www.youtube.com/watch?v=ma15iBQpmHU">Keep IT clean: mid-sized building blocks
+                            and hexagonal architecture</a>
+                        <ul>
+                            <li class="fragment">
+                                <a href="https://www.youtube.com/watch?v=mOEuDqcF-uQ">Dłuższa wersja</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="fragment">
+                        <a href="https://www.youtube.com/watch?v=LVN7tof5LDg">
+                            Moje rozumienie DDD na przykładzie bajki o 3 świnkach
+                        </a>
+                    </li>
+                    <li class="fragment">
+                        <a href="https://github.com/full-stack-engineering/java-clean-architecture">
+                            github.com/full-stack-engineering/java-clean-architecture
+                        </a>
+                    </li>
+
+                    https://bottega.com.pl/pdf/materialy/ddd/ddd1.pdf
+                    https://bottega.com.pl/pdf/materialy/sdj-ddd.pdf
+                </section>
+                <section>
+                    TODO: inny sposób - interfejs dla agregatu/domeny z metodami. Publiczna rzecz z domeny, a
+                    implementacja pakietowa, np. już z adnotacjami Hibernate'a
+                </section>
+            </section>
+            <section data-background-image="" data-transition="zoom">
+                <section data-transition="zoom">
+                    <h3 class="fragment" style="margin: 0">Dzięki!</h3>
+                    <a
+                        href="https://disney.fandom.com/wiki/The_Three_Little_Pigs?file=Tumblr_mihpakJxZP1qhcrb0o1_1280.jpg">
+                        <img src="img/end.jpg" class="pure-img fragment replace fade-out" style="width: 55%;"
+                            data-fragment-index="1">
+                        <img src="img/end2.png" class="pure-img fragment replace fade-in" style="width: 55%;"
+                            data-fragment-index="1">
+                    </a>
+                    <a class="fragment" data-fragment-index="2" style="display: block;"
+                        href="https://mat3e.github.io/talks/ddd-workshop/alior.html">
+                        mat3e.github.io/talks/ddd-workshop/alior
+                    </a>
+                </section>
+            </section>-->
+        </div>
+    </div>
+    <script src="js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        const controls = (function () {
+            Reveal.initialize({
+                history: true,
+                // - null: Media will only autoplay if data-autoplay is present
+                autoPlayMedia: null,
+                transition: 'fade', // none/fade/slide/convex/concave/zoom
+                transitionSpeed: 'default', // default/fast/slow
+                backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
+                dependencies: [
+                    { src: 'js/classList.js', condition: function () { return !document.body.classList; } },
+
+                    { src: 'js/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                    { src: 'js/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+
+                    // Syntax highlight for <code> elements
+                    { src: 'js/highlight.js', callback: function () { setTimeout(() => hljs.initHighlightingOnLoad(), 0); } },
+
+                    // Zoom in and out with Alt+click
+                    { src: 'js/zoom.js' },
+
+                    { src: 'notes/notes.js' },
+
+                    { src: 'js/math.js' }
+                ]
+            });
+
+            document.querySelectorAll('.reveal .slides section:not([data-background-image])').forEach(s => {
+                s.setAttribute('data-background-image', 'img/isa.png');
+                s.setAttribute('data-background-size', '150px');
+                s.setAttribute('data-background-position', '20px 20px');
+            });
+
+            return {
+                evalCode(btn) {
+                    eval(extractCodeFromBefore(btn));
+                }
+            }
+
+            function extractCodeFromBefore(btn) {
+                return [...btn.parentElement.querySelectorAll('pre')].filter(e => getComputedStyle(e).display !== 'none')[0].innerText;
+            }
+        })();
+    </script>
+</body>
+
+</html>
