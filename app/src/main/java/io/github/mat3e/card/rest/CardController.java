@@ -29,7 +29,7 @@ class CardController {
     @PatchMapping
     ResponseEntity<Void> activateCard(
             @PathVariable int customerId,
-            @Pattern(regexp="\\d{16}") @PathVariable String cardNumber,
+            @Pattern(regexp = "\\d{16}") @PathVariable String cardNumber,
             @Valid @RequestBody Activation activation
     ) {
         service.activate(CardId.of(cardNumber, customerId), activation.toMoney());
@@ -39,10 +39,14 @@ class CardController {
     @PostMapping("/withdrawals")
     ResponseEntity<Void> withdrawMoney(
             @PathVariable int customerId,
-            @Pattern(regexp="\\d{16}") @PathVariable String cardNumber,
-            @Valid @RequestBody LocalWithdrawal withdrawal
+            @Pattern(regexp = "\\d{16}") @PathVariable String cardNumber,
+            @Valid @RequestBody Withdrawal withdrawal
     ) {
-        service.withdraw(withdrawal.getAmount(), CardId.of(cardNumber, customerId));
+        if (withdrawal.isLocal()) {
+            service.withdraw(withdrawal.getAmount(), CardId.of(cardNumber, customerId));
+            return ResponseEntity.noContent().build();
+        }
+        service.withdraw(withdrawal.toMoney(), CardId.of(cardNumber, customerId));
         return ResponseEntity.noContent().build();
     }
 
