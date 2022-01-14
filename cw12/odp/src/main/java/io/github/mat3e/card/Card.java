@@ -3,6 +3,7 @@ package io.github.mat3e.card;
 import io.github.mat3e.exception.BusinessException;
 import io.github.mat3e.card.vo.CardId;
 
+import javax.money.CurrencyUnit;
 import javax.money.MonetaryAmount;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -30,6 +31,10 @@ class Card {
 
     CardId id() {
         return id;
+    }
+
+    CurrencyUnit currency() {
+        return limit.getCurrency();
     }
 
     void withdraw(MonetaryAmount money) {

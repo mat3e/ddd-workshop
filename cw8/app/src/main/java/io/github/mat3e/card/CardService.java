@@ -23,7 +23,7 @@ public class CardService {
 
     public void withdraw(int amount, CardId cardId) {
         Card card = cardFor(cardId);
-        CurrencyUnit currency = card.calculateDebt().getCurrency();
+        CurrencyUnit currency = card.currency();
         MonetaryAmount money = Monetary.getDefaultAmountFactory()
                 .setNumber(amount)
                 .setCurrency(currency)

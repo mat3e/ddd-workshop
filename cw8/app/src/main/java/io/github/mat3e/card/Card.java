@@ -3,6 +3,7 @@ package io.github.mat3e.card;
 import io.github.mat3e.exception.BusinessException;
 import io.github.mat3e.card.vo.CardId;
 
+import javax.money.CurrencyUnit;
 import javax.money.MonetaryAmount;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -33,6 +34,10 @@ class Card {
         return id;
     }
 
+    CurrencyUnit currency() {
+        return limit.getCurrency();
+    }
+
     void withdraw(MonetaryAmount money) {
         assertActive();
         if (balance.isLessThan(money)) {
@@ -50,10 +55,6 @@ class Card {
         if (!isActive) {
             throw new BlockedCardException();
         }
-    }
-
-    MonetaryAmount calculateDebt() {
-        return limit.subtract(balance);
     }
 
     static class InsufficientBalanceException extends BusinessException {
