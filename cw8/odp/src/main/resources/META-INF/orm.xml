@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm
+   http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+                 version="1.0">
+
+    <description>XML Mapping file</description>
+
+    <entity class="io.github.mat3e.card.vo.CardSnapshot" access="FIELD">
+        <table name="cards"/>
+        <attributes>
+            <embedded-id name="id"/>
+            <basic name="limit">
+                <column name="limitation" nullable="false"/>
+            </basic>
+            <basic name="balance">
+                <column nullable="false"/>
+            </basic>
+            <basic name="isActive"/>
+        </attributes>
+    </entity>
+
+    <embeddable class="io.github.mat3e.card.vo.PersonId" access="FIELD">
+        <attributes>
+            <basic name="id">
+                <column name="person_id" nullable="false"/>
+            </basic>
+        </attributes>
+    </embeddable>
+    <embeddable class="io.github.mat3e.card.vo.CardNumber" access="FIELD">
+        <attributes>
+            <basic name="number">
+                <column nullable="false"/>
+            </basic>
+        </attributes>
+    </embeddable>
+    <embeddable class="io.github.mat3e.card.vo.CardId" access="FIELD">
+        <attributes>
+            <embedded name="number"/>
+            <embedded name="personId"/>
+        </attributes>
+    </embeddable>
+</entity-mappings>

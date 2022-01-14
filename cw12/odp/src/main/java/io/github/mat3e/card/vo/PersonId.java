@@ -1,0 +1,47 @@
+package io.github.mat3e.card.vo;
+
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import java.io.Serializable;
+import java.util.Objects;
+
+@Embeddable
+public final class PersonId implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    public static PersonId of(String id) {
+        return PersonId.of(Integer.parseInt(id));
+    }
+
+    public static PersonId of(int id) {
+        return new PersonId(id);
+    }
+
+    @Column(name = "person_id")
+    private int id;
+
+    // JPA
+    protected PersonId() {
+    }
+
+    PersonId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PersonId)) return false;
+        PersonId personId = (PersonId) o;
+        return id == personId.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+}

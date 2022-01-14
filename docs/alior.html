@@ -184,6 +184,10 @@
             visibility: inherit;
         }
 
+        .reveal .slides .premd pre {
+            margin: 0;
+        }
+
         .reveal .slides section .centered {
             display: flex;
             align-items: center;
@@ -1658,7 +1662,7 @@
                     </ul>
                 </section>
             </section>
-            <!--<section data-background-image="" data-transition="zoom">
+            <section data-background-image="" data-transition="zoom">
                 <section>
                     <h1>DDD</h1>
                     <table>
@@ -1754,26 +1758,6 @@
                         <li class="fragment">Jak agregaty - samotne wyspy, raczej bez powiązań</li>
                     </ul>
                 </section>
-                <section>
-                    <h3 style="margin-bottom: 0;">Building blocks - 2/5</h3>
-                    <div style="display: flex; align-items: center;">
-                        <ul>
-                            <li class="fragment" data-fragment-index="2">Zapis i odczyt agregatu</li>
-                            <li class="fragment" data-fragment-index="3">Jedna transakcja bazodanowa (~reguły spójne
-                                natychmiast)</li>
-                            <li class="fragment" data-fragment-index="4">Agregat wczytany? Gwarancja niezmienników</li>
-                        </ul>
-                        <img src="img/tactical/repo.png" class="pure-img fragment" data-fragment-index="1" />
-                    </div>
-                    <hr />
-                    <div style="display: flex; align-items: center;">
-                        <img src="img/tactical/service.png" class="pure-img fragment" />
-                        <ul>
-                            <li class="fragment">Bezstanowa logika domenowa</li>
-                            <li class="fragment">Np. kalkulator/księgowy działający na fakturze</li>
-                        </ul>
-                    </div>
-                </section>
                 <section data-background-color="white" data-background-image="">
                     <h3 class="fragment"
                         style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%);">Jaka nazwa?
@@ -1798,6 +1782,32 @@
                         systemie? Raczej nie dało się zmienić stanu, więc go nie zmieniliśmy; bardziej odrzucenie
                         komendy niż zapisanie jakiegoś zdarzenia
                     </aside>
+                </section>
+                <section>
+                    <h3>
+                        <a href="https://gregfyoung.wordpress.com/2012ń/02/28/the-gibberish-game/">
+                            Gibberish Game
+                        </a>
+                    </h3>
+                    <ul style="font-size: .9em">
+                        <li class="fragment">Na etapie refactoru, ale też przy nowych rzeczach</li>
+                        <li class="fragment">
+                            Nazwa <code>Payer</code> ukształtuje (być może źle) sposób myślenia o zakresie
+                            odpowiedzialności</li>
+                        <li class="fragment"><code>Payerish</code>
+                            <ul>
+                                <li class="fragment">
+                                    Alternatywnie: <code>Ble</code>, <code>Bla</code>, <code>Alfa</code>,
+                                    <code>Beta</code>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Zmieniamy nazwę dopiero po przeanalizowaniu i&nbsp;głębszemu zrozumieniu
+                        </li>
+                        <li class="fragment">3 perspektywy patrzenia na obiekt: Being (pola), Behaving (metody),
+                            Becoming (koszyk -> zamówienie)</li>
+                        <li class="fragment">Jak poznamy te perspketywy łatwiej z nazwą</li>
+                    </ul>
                 </section>
                 <section data-background-color="white" data-background-image="">
                     <div>
@@ -1829,25 +1839,17 @@
                     </ul>
                 </section>
                 <section>
-                    <h3>
-                        <a href="https://gregfyoung.wordpress.com/2012ń/02/28/the-gibberish-game/">
-                            Gibberish Game
-                        </a>
-                    </h3>
-                    <ul style="font-size: .9em">
-                        <li class="fragment">Na etapie refactoru, ale też przy nowych rzeczach</li>
-                        <li class="fragment">Nie <code>Payer</code>, bo to nas "zafiksuje" (być może źle), ukształtuje
-                            sposób myślenia o zakresie</li>
-                        <li class="fragment">odpowiedzialności</li>
-                        <li class="fragment"><code>Payerish</code></li>
-                        <li class="fragment">Zmieniamy nazwę dopiero po przeanalizowaniu i&nbsp;głębszemu zrozumieniu
-                        </li>
-                        <li class="fragment">Alternatywnie: <code>Ble</code>, <code>Bla</code>, <code>Alfa</code>,
-                            <code>Beta</code>
-                        </li>
-                        <li class="fragment">3 perspektywy patrzenia na obiekt: Being (pola), Behaving (metody),
-                            Becoming (koszyk -> zamówienie)</li>
-                        <li class="fragment">Jak poznamy te perspketywy łatwiej nam będzie z&nbsp;zwą</li>
+                    <h3 style="margin-bottom: 0;">Building blocks - 2/5</h3>
+                    <div>
+                        <img src="img/tactical/repo.png" class="pure-img fragment" />
+                    </div>
+                    <ul>
+                        <li class="fragment">Zapis i odczyt agregatu</li>
+                        <li class="fragment">Jedna transakcja bazodanowa (~reguły spójne natychmiast)</li>
+                        <li class="fragment">Agregat wczytany? Gwarancja niezmienników</li>
+                        <li class="fragment">W warstwie domeny tylko jako "port"</li>
+                        <li class="fragment">To serwis aplikacyjny decyduje kiedy użyć domeny. On woła repo do odczytu i
+                            zapisu</li>
                     </ul>
                 </section>
                 <section>
@@ -1898,16 +1900,46 @@
                 </section>
                 <section data-markdown>
                     <script type="text/template">
-                        ## Ćwiczenie 7-->
+                        ## Ćwiczenie 7
 
-                        <!--1.--> <!-- .element: class="fragment" --> <!--Pobrać i otworzyć kod z folderu "app"-->
-                        <!--1.--> <!-- .element: class="fragment" --> <!--Przeanalizować istniejące klasy, szczególnie testy aplikacji `CardServiceTest`-->
-                        <!--1.--> <!-- .element: class="fragment" --> <!--Zaimplementować kod aplikacji (`CardService`) i&nbsp;domeny (`Card`)-->
-                        <!--1.--> <!-- .element: class="fragment" --> <!--Uznaniowo - rozszerzyć o dodatkowe testy i&nbsp;klasy
+                        1. <!-- .element: class="fragment" --> Pobrać i otworzyć kod z folderu "app"
+                        1. <!-- .element: class="fragment" --> Przeanalizować istniejące klasy, szczególnie testy aplikacji `CardServiceTest`
+                        1. <!-- .element: class="fragment" --> Zaimplementować kod aplikacji (`CardService`) i&nbsp;domeny (`Card`)
+                        1. <!-- .element: class="fragment" --> Uznaniowo - rozszerzyć o dodatkowe testy i&nbsp;klasy
                     </script>
                 </section>
             </section>
             <section data-background-image data-transition="zoom">
+                <section>
+                    <h3 style="margin-bottom: 0;">Building blocks - 3½/5</h3>
+                    <div>
+                        <img src="img/tactical/snap.png" class="pure-img fragment" />
+                    </div>
+                    <ul>
+                        <li class="fragment">Oszustwo, dodatkowy, nieoficjalny klocek DDD</li>
+                        <li class="fragment">Zrzut stanu, zdjęcie rentgenowskie agregatu</li>
+                        <li class="fragment">Wykorzystywane do mapowania pod API i&nbsp;pod bazę danych</li>
+                        <li class="fragment">Wzorzec memento</li>
+                    </ul>
+                </section>
+                <section class="premd" style="font-size: .8em;" data-markdown>
+                    <script type="text/template">
+                        ### Ćwiczenie 8
+
+                        1. <!-- .element: class="fragment" --> Pobrać i otworzyć kod z folderu "app"
+                        1. <!-- .element: class="fragment" --> Przeanalizować istniejące klasy, szczególnie `Card` i `CardRepository`
+                        1. <!-- .element: class="fragment" --> Przetestować aplikację, korzystając z Postmana i&nbsp;kolekcji żądań "src/main/resources/CreditCard8.postman_collection.json"
+                        1. <!-- .element: class="fragment" --> Dodać `CardSnapshot` - zarówno tworzenie agregatu ze snaphota jak i pobieranie snapshota z agregatu
+                        1. <!-- .element: class="fragment" --> Przenieść mapowanie Hibernate'a na `CardSnapshot`
+                        1. <!-- .element: class="fragment" --> Zmienić `CardRepository`, żeby implementacja Springa korzystała z `CardSnapshot`
+                        1. <!-- .element: class="fragment" --> Najprościej dodać metody domyślne, np.
+                           ```
+                           default Optional<Card> findBy(CardId id) {
+                               return findById(id).map(Card::restore);
+                           }
+                           ```
+                    </script>
+                </section>
                 <section>
                     <h3>Widoki</h3>
                     <ul>
@@ -1916,120 +1948,163 @@
                         <li class="fragment">Dedykowane obiekty</li>
                         <li class="fragment">Odczyt nie zepsuje stanu systemu, nie trzeba sprawdzać reguł</li>
                     </ul>
-
-                    Widoki - cache, komendy - brak
-                    Widoki - można ponawiać, komendy - nie
-                    Widoków więcej, komend mniej
-
-                    CQRS w obrębie BC
-                    Można mieć 2 bazy/tabele i synchronizować (np. komenda w 2 miejscach, np. zdarzenie po komendzie, na
-                    które nasługuje ReadModelUpdater)
+                    <table class="fragment">
+                        <thead>
+                            <tr>
+                                <th style="width: 50%;">Widoki</th>
+                                <th style="width: 50%;">Komendy</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="fragment">
+                                <td>Cache</td>
+                                <td>Bez cache</td>
+                            </tr>
+                            <tr class="fragment">
+                                <td>Można ponawiać</td>
+                                <td>Nie można</td>
+                            </tr>
+                            <tr class="fragment">
+                                <td>Więcej</td>
+                                <td>Mniej</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </section>
                 <section>
-                    Można jawnie stworzyć sobie klasy "Command"
-                    // pokazać tu 3 świnki
-                    Można też 1 CommandHandler per Command (wtedy trochę bardziej idiotoodporne)
-                    Można mieć CommandBus, co łaczy komendy i handlery; on też może dodać jakiś generyczny handler dla
-                    wszystkich komend (np. logujący, odkładający do bazy)
+                    <h3 style="margin-bottom: 0;">CQRS w BC</h3>
+                    <ul>
+                        <li class="fragment">Można nawet 2 tabele/bazy</li>
+                        <li class="fragment">Synchronizacja
+                            <ul>
+                                <li class="fragment">Komenda w 2 miejscach</li>
+                                <li class="fragment">Zdarzenie po komendzie i obsługa w jakimś
+                                    <code>ReadModelUpdater</code>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Czasem 1 baza, ale odczyt zwykłym SQL-em, np. z kilku agregatów</li>
+                        <li class="fragment">Można jawnie stworzyć klasy <code>Command</code></li>
+                        <li class="fragment">
+                            <code>CommandHandler</code> per <code>Command</code> + jakieś generyczne, np.
+                            <code>LoggingCommandHandler</code>, obsługujący wszystkie
+                        </li>
+                    </ul>
+                    <aside class="notes">3 świnki to mają poniekąd</aside>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ### Ćwiczenie 9
+
+                        1. <!-- .element: class="fragment Fz(.75em)" --> Pobrać i otworzyć kod z folderu "cw3/odp"
+                        1. <!-- .element: class="fragment Fz(.75em)" --> Utworzyć `TaskQueryRepository` jak `TaskRepository`
+                           1. <!-- .element: class="fragment" --> W `TaskRepository` zostawić tylko `findById`, `save`, `saveAll`, `deleteById`
+                           1. <!-- .element: class="fragment" --> `count` i `findAllByDoneIsFalseAndProject_Id` przenieść do `TaskQueryRepository`
+                           1. <!-- .element: class="fragment" --> Dopisać domyślną `areUndoneTasksWithProjectId` korzystającą z `findAllByDoneIsFalseAndProject_Id`
+                           1. <!-- .element: class="fragment" --> Dopisać `getSingleById` zwracającą `TaskDto`
+                           1. <!-- .element: class="fragment" --> Dopisać [`<T> Set<T> findAllBy(Class<T> type)`](https://stackoverflow.com/a/48442873/4774651)
+                        1. <!-- .element: class="fragment Fz(.75em)" --> [Zamienić `TaskWithChangesDto` w interfejs z getterami](https://www.baeldung.com/spring-data-jpa-projections)
+                        1. <!-- .element: class="fragment Fz(.75em)" --> Usunąć zwracanie `changesCount` z klasy `Task`
+                        1. <!-- .element: class="fragment Fz(.75em)" --> Skorzystać z `TaskQueryRepository` wszędzie gdzie potrzebne odczyty zadań
+                    </script>
+                </section>
+                <section>
+                    <h3>Istniejący system</h3>
+                    <ul>
+                        <li class="fragment">Zbierać czas pobierania rzeczy z bazy</li>
+                        <li class="fragment">Znaleźć miejsca najbardziej kosztowne czasowo</li>
+                        <li class="fragment">
+                            Przepisać ze skomplikowanych encji Hibernate'a na zwykły SQL i dedykowane obiekty odczytu
+                        </li>
+                        <li class="fragment">
+                            Po przepisaniu: część połączeń w obiektach można usunąć
+                        </li>
+                        <li class="fragment">Dodać nowe - cache, kolejne DTO</li>
+                    </ul>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ### Ćwiczenie 10
+
+                        1. <!-- .element: class="fragment" --> Pobrać i otworzyć kod z folderu "app"
+                        1. <!-- .element: class="fragment" --> Przeanalizować szczególnie moduły `customer` (zwykły CRUD) i `cardinfo` (sam widok)
+                        1. <!-- .element: class="fragment" --> Przetestować aplikację, korzystając z Postmana i&nbsp;kolekcji żądań "src/main/resources/CreditCard.postman_collection.json"
+                        1. <!-- .element: class="fragment" --> Rozwinąć `cardinfo` - pobierać również nieaktywne karty
+                        1. <!-- .element: class="fragment" --> Np. dodać `findRestricted` oraz `findBy`, łączącą `findActive` i&nbsp;`findRestricted`
+                    </script>
+                </section>
+                <section>
+                    <h3>Zdarzenia</h3>
+                    <ul>
+                        <li class="fragment">Wewnętrzne - np. dla 2 agregatów w BC</li>
+                        <li class="fragment">Zewnętrzne, publiczne
+                            <ul>
+                                <li class="fragment">Bez odwołań do wewnętrznych VO</li>
+                                <li class="fragment">Dla pozostałych BC</li>
+                                <li class="fragment">Wersjonowane</li>
+                                <li class="fragment">
+                                    Jakiś identyfikator + np. identyfikator przyczyny (źródłowe zdarzenie, komenda,
+                                    agregat)
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Publikacja</h3>
+                    <ul style="font-size: .9em">
+                        <li class="fragment">Komendy agregatu mogą korzystać z&nbsp;<code>Publishera</code></li>
+                        <li class="fragment">
+                            Zdarzenia zwrócone przez komendy lub przechowane w agregacie - do opublikowania w aplikacji
+                        </li>
+                        <li class="fragment">Dobre miejsca: serwis aplikacyjny lub repozytorium</li>
+                        <li class="fragment">Uwaga na transakcje (np. <code>@Transactional</code>)</li>
+                        <li class="fragment"><em>At most one delivery</em> (0-1) vs. <em>At least one delivery</em> (1+)
+                        </li>
+                    </ul>
                     <aside class="notes">
-                        Omówić kod z zadania - że warstwa aplikacji już jest; testujemy przez serwisy aplikacyjne. To
-                        jest nasza jednostka w teście jednostkowym. Do tego in-mem, żeby śmigało szybko
-                        <br />
-                        Chcemy elastyczności w implementacji, ale oczekujemy stałych zachowań
-                        <br />
-                        Optymalnie między czytelnością, a "czystością" rozwiązania
-                        <br />
-                        Zaczytanie odpowiedniej karty po numerze to już kwestia apki
+                        Nie chcemy 1 transakcji na maila i zapis, mail powinien być osobno
+                        <br>
+                        W @Transactional nie musimy repo.save i wtedy @DomainEvents nie pyknie
+                        <br>
+                        Jak poleci wyjątek podczas w listenerze, to nie będzie ponowienia
                     </aside>
                 </section>
                 <section data-markdown>
                     <script type="text/template">
-                        ### Ćwiczenie 8-->
+                        ## Ćwiczenie 11
 
-                        <!--1.--> <!-- .element: class="fragment Fz(.75em)" --> <!--Pobrać i otworzyć kod z folderu "cw3/odp"-->
-                        <!--1.--> <!-- .element: class="fragment Fz(.75em)" --> <!--Utworzyć `TaskQueryRepository` jak `TaskRepository`-->
-                           <!--1.--> <!-- .element: class="fragment" --> <!--W `TaskRepository` zostawić tylko `findById`, `save`, `saveAll`, `deleteById`-->
-                           <!--1.--> <!-- .element: class="fragment" --> <!--`count` i `findAllByDoneIsFalseAndProject_Id` przenieść do `TaskQueryRepository`-->
-                           <!--1.--> <!-- .element: class="fragment" --> <!--Dopisać domyślną `areUndoneTasksWithProjectId` korzystającą z `findAllByDoneIsFalseAndProject_Id`-->
-                           <!--1.--> <!-- .element: class="fragment" --> <!--Dopisać `getSingleById` zwracającą `TaskDto`-->
-                           <!--1.--> <!-- .element: class="fragment" --> <!--Dopisać [`<T> Set<T> findAllBy(Class<T> type)`](https://stackoverflow.com/a/48442873/4774651)-->
-                        <!--1.--> <!-- .element: class="fragment Fz(.75em)" --> <!--[Zamienić `TaskWithChangesDto` w interfejs z getterami](https://www.baeldung.com/spring-data-jpa-projections)-->
-                        <!--1.--> <!-- .element: class="fragment Fz(.75em)" --> <!--Usunąć zwracanie `changesCount` z klasy `Task`-->
-                        <!--1.--> <!-- .element: class="fragment Fz(.75em)" --> <!--Skorzystać z `TaskQueryRepository` wszędzie gdzie potrzebne odczyty zadań
+                        1. <!-- .element: class="fragment" --> Utworzyć interfejs w Javie `DomainEvent`
+                        1. <!-- .element: class="fragment" --> Zaprojektować interfejs `DomainEventPublisher`
+                        1. <!-- .element: class="fragment" --> Elastyczność - implementacje mogą zapisywać zdarzenia w bazie, wysyłać kolejkami, wysyłać mechanizmami springowymi
+                        1. <!-- .element: class="fragment" --> Można napisać implementację zgodnie ze wzorcem [obserwatora](https://en.wikipedia.org/wiki/Observer_pattern)
                     </script>
                 </section>
                 <section>
-                    zdarzenia
-                    OK, wiemy jak zawrzeć komendy i reguły w kodzie, więc pora na zdarzenia, od których zaczęliśmy.
-                    Potem widoki
-
-                    podobne do VO
-                    publiczne - dla innych BC; wersjonowane, bez odwołań do wewnętrznych VO
-                    wewnętrzne - dla 2 agregatów
-                    jakiś identyfikator i np. identyfikator przyczyny (źródłowe zdarzenie, komenda, agregat)
-                    jak kilka zdarzeń ze sobą powiązanych, np. wyzwolonych wspólnie, to warto mieć correlation id
-                </section>
-                <section>
-                    Zdarzenia publikowane przez agregaty, udostępniane przez agregaty (getEvents albo zwracane z
-                    komend), zdarzenia publikowane dopiero w warstwie aplikacji (najlepiej w implementacji repo
-                    springowego)
+                    <h3>Usprawnienia Springa</h3>
+                    <ul>
+                        <li class="fragment">
+                            Zdarzenia: <a href="https://www.baeldung.com/spring-data-ddd">DDD Aggregates and
+                                @DomainEvents</a>
+                        </li>
+                        <li class="fragment">
+                            CRUD (+ zdarzenia): <a href="https://www.baeldung.com/spring-data-ddd">
+                                Spring Data REST Reference Guide
+                            </a>
+                        </li>
+                    </ul>
                 </section>
                 <section data-markdown>
                     <script type="text/template">
-                        ## Ćwiczenie 9-->
+                        ## Ćwiczenie 12
 
-                        <!--1.--> <!-- .element: class="fragment" --> <!--Utworzyć interfejs w Javie `DomainEvent`-->
-                        <!--1.--> <!-- .element: class="fragment" --> <!--Zaprojektować interfejs `DomainEventPublisher`-->
-                        <!--1.--> <!-- .element: class="fragment" --> <!--Elastyczność - implementacje mogą zapisywać zdarzenia w bazie, wysyłać kolejkami, wysyłać mechanizmami springowymi-->
-                        <!--1.--> <!-- .element: class="fragment" --> <!--Można napisać implementację zgodnie ze wzorcem [obserwatora](https://en.wikipedia.org/wiki/Observer_pattern)
+                        1. <!-- .element: class="fragment" --> Pobrać i otworzyć kod z folderu "app"
+                        1. <!-- .element: class="fragment" --> Przeanalizować zdarzenia (pakiet `event`). Zobaczyć jak publikuje je `customer`
+                        1. <!-- .element: class="fragment" --> Wykorzystać `ExistingCustomerRepository` w `CardService`, żeby testy znów przechodziły
                     </script>
                 </section>
-                <section>
-                    O publikacji zdarzeń słów kilka
-
-                    Przypomnienie:
-                    Zdarzenia publikowane przez agregaty, udostępniane przez agregaty (getEvents albo zwracane z
-                    komend), zdarzenia publikowane dopiero w warstwie aplikacji (najlepiej w implementacji repo
-                    springowego)
-
-                    @DomainEvents to problem, gdy działamy w obrębie @Transactional; wtedy nie wołamy repo.save, a
-                    przynajmniej nie musimy, bo bazodanowy commit zapisuje wszystkie zmiany na zarządzanych encjach.
-                    Zdarzenia wtedy nie pójdą
-                    Jak poleci wyjątek podczas w listenerze, to nie będzie ponowienia
-
-                    Ogónie pubikacja zdarzeń i zapis powinny iść w tej samej transakcji, więc może być metoda
-                    @Transactional, a w niej publisher.pubish i zapis na koniec; wtedy uwaga np. na obsługę zdarzenia
-                    wysyłką maila. Nie chcemy 1 transakcji na maila i zapis, mail powinien być osobno
-
-                    Można publikować dopiero po commicie, dając jakiś callback; gdy ręcznie zarządamy transakcjami to
-                    też można po; wtedy jakieś ponawianie publikacji itd. łatwiej // to i powyższe to at most one
-                    delivery (0-1)
-
-                    3. opcja - zapis zdarzeń to opublikowania; publisher może mieć implementację zapisującą i cykliczne
-                    wołanie // at least one delivery (1+)
-
-                    https://www.baeldung.com/spring-data-ddd
-                </section>
-                <section>
-                    Mega: https://docs.spring.io/spring-data/rest/docs/current/reference/html/#reference
-
-                    + https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#core.domain-events
-                </section>
-                <section>
-                    W obecnym agregacie nie mamy jawnych zdarzeń. Zdarzenia to zmiana stanu, więc np. zmniejszenie stanu
-                    konta
-
-                    TODO: obok CRUD użytkowników i odczyt kart razem z użytkownikami (mail, imię, nazwisko - mogą
-                    się zmieniać)
-
-                    !!! sync nowy user/usunięcie usera i odświeżanie listy userów w kartach
-
-                    @EventListener
-
-                    v1 - karta nasłuchuje, a cardinfo robi SQL selecta z kilku tabel
-                    mogłyby być widoki na bazie
-
-                    TODO: ćwiczenie 2
+                <!-- <section>
+                    TODO:
                     sync 2 - odświeżanie cardinfo - model ma swoją tabelkę i śmiga na zdarzeniach z karty i usera
                     publikacja zdarzeń z kart - z apki po prostu, na agregacie przez repo/serwis, zwrotka z komend
                     domeny
@@ -2039,47 +2114,10 @@
                     Alternatywny sync - komenda idzie w 2 miejsca (apka synchronizuje)
                 </section>
                 <section>
-                    Istniejący system
-                    Zbierać czas wyciągania różnych widoków z bazy
-                    Znaleźć najbardziej kosztowne czasowo i przepisać na zwykły SQL (gdzieś np. przez Hibernate było
-                    ciężko)
-                    Po przepisaniu: część połączeń w obiektach może być niepotrzebna - usunąć
-                    Dodać nowe, dedykowane obiekty - cache, DTO, wyciągane przez query repo
-
-                    szybsze
-                </section>
-                <section>
-                    Polityka w Design-Level ES
-                    To często jest saga/process manager
-                    Jakiś osobny BC/mikroserwis, który zbiera kilka zdarzeń
-                    Dopóki wszystkie się nie wykonają, nie możemy iść dalej
-                    Np. polecenie innego użytkownika: link aktywacyjny, dostał kartę, zrobił transakcję za min. 100 zł -
-                    dopiero po tych 3 zdarzeniach możemy przypisać benefit polecającemu, np. 5% prowizji przy
-                    transakcjach walutowych zamiast 10 - polityka z DDD wstrzykiwana
-
-                    Nasłuchuje na wiele różnych zdarzeń albo np. kilka razy w procesie? Lecimy
-                </section>
-                <section>
-                    Polityka wybierania dostawcy - wysyłamy komendy "przygotuj ofertę" do 3 kurierów np. i potem czekamy
-                    na odpowiedzi
-                    Po otrzymaniu odpowiedzi mamy politykę wyboru dostawcy i skutek
-                    Warto zamodelować czas - ES zdarzenie wyzwalane po starcie polityki z opóźnieniem, np. 3 godziny i
-                    jeśli nie mamy odpowiedzi w tym czasie, to musimy to jakoś obsłuzyć
-                </section>
-                <section>
-                    Silniki workflow (workflow engine), jakieś biblioteki
-                </section>
-                <section>
-                    Konstruujemy
-                    Zachowania modelu (zdarzenia, komendy, widoki, reguły, polityki) - to jest D-L ES, omówiliśmy
-                    Struktury modelu (VO, encje, serwisy domenowe)
-                    Cykl życia modelu (fabryki, repozytoria)
-                </section>
-                <section>
-                    Tych słów można używać z biznesem - pilnujemy definicji, że to ma tożsamość taką, tamto inną
-                    Takie "makiety"; jak na frontendzie mocki ekranów, tak dla nas takie klocki budulcowe; nie UML, żeby
-                    zaangażować biznes
-                </section>
+                    TODO: zdarzenia jako źródło prawdy w agregacie
+                </section> -->
+            </section>
+            <section data-background-image data-transition="zoom">
                 <section>
                     <h3 style="margin-bottom: 0;">Building blocks - 4/5</h3>
                     <br />
@@ -2098,6 +2136,23 @@
                     </ul>
                 </section>
                 <section>
+                    <h3 style="margin-bottom: 0;">Building blocks - 5/5</h3>
+                    <br />
+                    <h4 style="margin-bottom: 0;" class="fragment">Fabryka</h4>
+                    <ul>
+                        <li class="fragment">Dla skomplikowanych encji/agregatów</li>
+                    </ul>
+                    <hr />
+                    <div>
+                        <img src="img/tactical/service.png" class="pure-img fragment" />
+                    </div>
+                    <ul>
+                        <li class="fragment">Bezstanowa logika domenowa</li>
+                        <li class="fragment">Np. kalkulator/księgowy działający na fakturze</li>
+                    </ul>
+                </section>
+                <!-- <section>
+                    FIXME:
                     TODO: Wypłaty w różnych walutach to przez politykę w serwisie domenowym
                     Serwis apki mógłby teoretycznie szukać polityk i przekazywać, ale może lepiej to zdelegować.
                     Czujemy, że będzie się rozrastać
@@ -2110,33 +2165,36 @@
                     do komendy karty.
                     withdraw(WithdrawalPolicy)
                     Karta powinna działać w obrębie waluty, bez znajomości waluty, tylko na liczbach
-                </section>
+                </section> -->
                 <section>
-                    fabryka
-                </section>
-                <section>
-                    repo
-
-                    tu wspomnieć, że wołanie w serwisach aplikacyjnych; w warstwie domeny tylko czysty kod
-                </section>
-                <section>
-                    Wzorzec memento - Snapshot
-                    // 3. sposób zapisu - adnotacje na agregacie, zdarzenia, snap
-                </section>
-                <section>
-                    <h3 style="margin-bottom: 0;">Building blocks - 5/5</h3>
-                    <div>
-                        <img src="img/tactical/snap.png" class="pure-img fragment" />
-                    </div>
+                    <h3>Blocki a biznes</h3>
                     <ul>
-                        <li class="fragment">Oszustwo, dodatkowy, nieoficjalny klocek DDD</li>
-                        <li class="fragment">Zrzut stanu, zdjęcie rentgenowskie agregatu</li>
-                        <li class="fragment">Wykorzystywane do mapowania pod API i&nbsp;pod bazę danych</li>
+                        <li class="fragment">Używane w komunikacji z biznesem</li>
+                        <li class="fragment">Uczymy ekspertów - to ma tożsamość taką, tamto inną</li>
+                        <li class="fragment">To są "mocki"/"makiety" dla backendu</li>
+                        <li class="fragment">Nie UML, tylko building blocki</li>
                     </ul>
                 </section>
                 <section>
-                    TODO: dodać snapshoty do karty i np. tylko na tym będzie zapis // czy to jako ćwiczenie, czy jako
-                    przykład?
+                    <h3>Blocki - podsumowanie</h3>
+                    <ul>
+                        <li class="fragment">Zachowania modelu
+                            <ul>
+                                <li class="fragment">Zdarzenia, komendy, widoki, reguły, polityki</li>
+                                <li class="fragment">Design-Level ES</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Struktury modelu
+                            <ul>
+                                <li class="fragment">VO, encje, serwisy domenowe</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Cykl życia modelu
+                            <ul>
+                                <li class="fragment">Fabryki, repozytoria</li>
+                            </ul>
+                        </li>
+                    </ul>
                 </section>
                 <section>
                     <h3>DDD Taktyczne - kod</h3>
@@ -2248,6 +2306,96 @@ public interface Specification<T>
                 </section>
             </section>
             <section data-background-image data-transition="zoom">
+                <section>
+                    <h3 style="margin-bottom: 0;">Polityka z ES</h3>
+                    <ul style="font-size: .8em; line-height: 1.15;">
+                        <li class="fragment">Karteczka zbiera wiele różnych zdarzeń albo np. kilka razy w procesie?
+                            Saga/process manager</li>
+                        <li class="fragment">Jakiś osobny BC/mikroserwis, który nasłuchuje</li>
+                        <li class="fragment">Wszystkie zdarzenia albo nie możemy iść dalej</li>
+                        <li class="fragment">Np. polecenie użytkownika: link aktywacyjny, dostał kartę, zrobił
+                            transakcję za min. 100 z ł
+                            <ul>
+                                <li class="fragment">Dopiero po tych 3 zdarzeniach możemy przypisać benefit polecającemu
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Np. wybór dostawcy - komendy "przygotuj ofertę" dla 3 kurierów i czekanie
+                            na odpowiedzi
+                            <ul>
+                                <li class="fragment">Po otrzymaniu - polityka wyboru dostawcy i skutek</li>
+                                <li class="fragment">Warto zamodelować czas - zdarzenie wyzwalane po starcie polityki
+                                    z opóźnieniem, np. 3 godziny</li>
+                                <li class="fragment">Jeśli nie mamy odpowiedzi w tym czasie - jakaś obsługa</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Silniki workflow (workflow engine), jakieś biblioteki</li>
+                    </ul>
+                </section>
+                <section>
+                    <pre><code class="java" data-trim contentEditable="true" style="max-height: 40em; line-height: 1.05; font-size: .8em;">
+                        class LowerFeeLrp {
+                            private final LowerFeeConditionsRepository conditionsRepository;
+                            private final LowerFeeActivationService activationService;
+                        
+                            @EventListener
+                            public void handle(CustomerCreated event) {
+                                LowerFeeConditions conditions = conditionsRepository.getByEvent(event);
+                                conditions.assignUser(event.customerId());
+                                conditionsRepository.save(conditions);
+                                applyIfPossible(conditions);
+                            }
+                        
+                            @EventListener
+                            public void handle(CardActivated event) {
+                                LowerFeeConditions conditions = conditionsRepository.getByEvent(event);
+                                conditions.assignCard(event.cardNumber(), event.customerId());
+                                conditionsRepository.save(conditions);
+                                applyIfPossible(conditions);
+                            }
+                        
+                            @EventListener
+                            public void handle(MoneyWithdrawn event) {
+                                LowerFeeConditions conditions = conditionsRepository.getByEvent(event);
+                                conditions.addTransactionMoney(event.amount());
+                                conditionsRepository.save(conditions);
+                                applyIfPossible(conditions);
+                            }
+                        
+                            private void applyIfPossible(LowerFeeConditions conditions) {
+                                if (conditions.fulfilled()) {
+                                    activationService.activate(conditions.getAssignedCard());
+                                }
+                            }
+                        }
+                    </code></pre>
+                </section>
+                <!-- <section>
+                    ogarnięcie polityk jako LRP z Design-Level ES, a nie w sensie DDD taktycznego
+                    LRP = Long-Running Process
+
+                    TODO: BC promocji; dorobienie zdarzenia po wypłacie 100 zł i nasłuchiwanie na to; do tego jakiś
+                    referal
+
+                    PromoLrp: różne metody handle i po każdej wołanie applyPromotionIfPossible()
+                    Może mieć dedykowany obiekt PromoData, co posiada metodę canActivate() i kilka innych np.
+                    markTransactionDone()
+
+                    Serwis domenowy kart po wykonaniu się polityki LRP powinien móc wstrzyknąć inną politykę DDD
+                    Np. nowy agregat user w kontekście kart i miałby jakieś punkty promocyjne. Po wypełnieniu LRP
+                    dostawałby dużo punktów, a serwis co robi transfer, pobierałby nie tylko kartę, ale i użytkownika.
+                    Jeśli user.points.qualifyToPremium to można zastosować politykę premium, czyli 5% zamiast 10
+
+                    Alternatywnie karta ma jakieś punkty promocyjne, a da się ją zidentyfikować po użytkowniku
+
+                    Przekombinowany przykład?
+                    Może być też fabryka polityk w serwisie i fabryka oczekuje karty albo info o karcie (punkty czy coś)
+
+                    Jakiś setup polityki. Polityka zawsze użyta, ale czasem dodaje 10, a czasem 5%. Taka konfiguracja,
+                    policy.changeChargeForExternalTransfer
+                </section> -->
+            </section>
+            <section data-background-image data-transition="zoom">
                 <section data-background-transition="zoom">
                     <h3 style="margin: 0">Clean Architecture</h3>
                     <a class="fragment"
@@ -2262,9 +2410,12 @@ public interface Specification<T>
                         This arch helps postponing the decision about the actual implementation
                     </aside>
                 </section>
-                <section>
-                    <img src="img/layers.png">
-                    Wcześniej też, ale teraz bardziej
+                <section data-background-image="img/layers.png" data-background-size="contain"
+                    data-background-color="white">
+                    <div class="fragment">
+                        <a href="https://bottega.com.pl/pdf/materialy/ddd/ddd2.pdf">Zaawansowane modelowanie DDD
+                            – techniki strategiczne: konteksty i architektura zdarzeniowa</a>
+                    </div>
                 </section>
                 <section data-background-image="img/modules-bg.png" data-background-image="cover">
                     <table>
@@ -2328,86 +2479,50 @@ public interface Specification<T>
                         monolith can have its own "app" and calls adapters from different domains
                     </aside>
                 </section>
-                <section>
-                    Clean Arch
-
-                    Pokazać alternatywne podejście z ładniejszym rozdzieleniem domain, app, adapters i modułami Mavena
-                    czyszczenie architektury
-                </section>
-                <section>
+                <!-- <section>
+                    Wyniesienie dalej niż w 3 świnkach - interfejs dla agregatu/domeny z metodami.
+                    Publiczna rzecz z domeny, a implementacja pakietowa, np. już z adnotacjami Hibernate'a
+                </section> -->
+                <!-- <section>
                     TODO: ćwiczenie z rozdzieleniem modułów w kontrze do architektury Nabrdalika
-                </section>
+                </section> -->
                 <section>
-                    Na koniec taki przykład ładny, z rozdzieleniem clean arch i jeszcze pomocniczymi interfejsami, żeby
-                    je zareklamować i omówić
-                </section>
-                <section>
-                    Zastrzeżenie karty jako call center i zastrzerzenie jako właściciel w necie
-                    W praktyce użytkownik musiał się uwiarygodnić w call center i dopiero może zastrzec, więc zawsze
-                    zastrzegamy jako właściciel. Call center podaje id właściciela, ale woła tę samą komendę
-                    POST /customers/PESEL/cards/NR/activations
-                    Idzie data zastrzeżenia i info jakieś?
-                </section>
-                <section>
-                    fristajlo, AMA, przykładowe domeny świnek i Java Clean Arch
-                </section>
-                <section>
-                    TODO: zdarzenia jako źródło prawdy w agregacie
-                </section>
-                <section>
-                    ogarnięcie polityk jako LRP z Design-Level ES, a nie w sensie DDD taktycznego
-                    LRP = Long-Running Process
-
-                    TODO: BC promocji; dorobienie zdarzenia po wypłacie 100 zł i nasłuchiwanie na to; do tego jakiś
-                    referal
-
-                    PromoLrp: różne metody handle i po każdej wołanie applyPromotionIfPossible()
-                    Może mieć dedykowany obiekt PromoData, co posiada metodę canActivate() i kilka innych np.
-                    markTransactionDone()
-
-                    Serwis domenowy kart po wykonaniu się polityki LRP powinien móc wstrzyknąć inną politykę DDD
-                    Np. nowy agregat user w kontekście kart i miałby jakieś punkty promocyjne. Po wypełnieniu LRP
-                    dostawałby dużo punktów, a serwis co robi transfer, pobierałby nie tylko kartę, ale i użytkownika.
-                    Jeśli user.points.qualifyToPremium to można zastosować politykę premium, czyli 5% zamiast 10
-
-                    Alternatywnie karta ma jakieś punkty promocyjne, a da się ją zidentyfikować po użytkowniku
-
-                    Przekombinowany przykład?
-                    Może być też fabryka polityk w serwisie i fabryka oczekuje karty albo info o karcie (punkty czy coś)
-
-                    Jakiś setup polityki. Polityka zawsze użyta, ale czasem dodaje 10, a czasem 5%. Taka konfiguracja,
-                    policy.changeChargeForExternalTransfer
-                </section>
-                <section>
-                    <li class="fragment">
-                        <a href="https://www.youtube.com/watch?v=do-xqIbKZ_8">DDD Q&A - wersja rozszerzona</a>
-                    </li>
-                    <li class="fragment">
-                        <a href="https://www.youtube.com/watch?v=ma15iBQpmHU">Keep IT clean: mid-sized building blocks
-                            and hexagonal architecture</a>
-                        <ul>
-                            <li class="fragment">
-                                <a href="https://www.youtube.com/watch?v=mOEuDqcF-uQ">Dłuższa wersja</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="fragment">
-                        <a href="https://www.youtube.com/watch?v=LVN7tof5LDg">
-                            Moje rozumienie DDD na przykładzie bajki o 3 świnkach
-                        </a>
-                    </li>
-                    <li class="fragment">
-                        <a href="https://github.com/full-stack-engineering/java-clean-architecture">
-                            github.com/full-stack-engineering/java-clean-architecture
-                        </a>
-                    </li>
-
-                    https://bottega.com.pl/pdf/materialy/ddd/ddd1.pdf
-                    https://bottega.com.pl/pdf/materialy/sdj-ddd.pdf
-                </section>
-                <section>
-                    TODO: inny sposób - interfejs dla agregatu/domeny z metodami. Publiczna rzecz z domeny, a
-                    implementacja pakietowa, np. już z adnotacjami Hibernate'a
+                    <h3 style="margin-bottom: 0;">DDD taktyczne</h3>
+                    <ul style="font-size: .85em; line-height: 1.15;">
+                        <li class="fragment">
+                            <a href="https://bottega.com.pl/pdf/materialy/ddd/ddd1.pdf">
+                                Podstawowe Building Blocks DDD
+                            </a> (artykuł)
+                        </li>
+                        <li class="fragment">
+                            <a href="https://bottega.com.pl/pdf/materialy/sdj-ddd.pdf">
+                                Domain Driven Design - Sposób na projektowanie złożonych modeli biznesowych
+                            </a> (artykuł)
+                        </li>
+                        <li class="fragment">
+                            <a href="https://www.youtube.com/watch?v=do-xqIbKZ_8">DDD Q&A - wersja rozszerzona</a>
+                        </li>
+                        <li class="fragment">
+                            <a href="https://www.youtube.com/watch?v=ma15iBQpmHU">Keep IT clean: mid-sized building
+                                blocks
+                                and hexagonal architecture</a>
+                            <ul>
+                                <li class="fragment">
+                                    <a href="https://www.youtube.com/watch?v=mOEuDqcF-uQ">Dłuższa wersja</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="fragment">
+                            <a href="https://www.youtube.com/watch?v=LVN7tof5LDg">
+                                Moje rozumienie DDD na przykładzie bajki o 3 świnkach
+                            </a>
+                        </li>
+                        <li class="fragment">
+                            <a href="https://github.com/full-stack-engineering/java-clean-architecture">
+                                github.com/full-stack-engineering/java-clean-architecture
+                            </a>
+                        </li>
+                    </ul>
                 </section>
             </section>
             <section data-background-image="" data-transition="zoom">
@@ -2425,7 +2540,7 @@ public interface Specification<T>
                         mat3e.github.io/talks/ddd-workshop/alior
                     </a>
                 </section>
-            </section>-->
+            </section>
         </div>
     </div>
     <script src="js/head.min.js"></script>
